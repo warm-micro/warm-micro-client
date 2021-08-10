@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import SignUpField from './component/SignUpField';
 
 const SignUp = () => {
   return (
@@ -8,7 +9,7 @@ const SignUp = () => {
         <BannerImage src="images/signUp.png" />
       </Banner>
       <InputConatiner>
-        <SignInField />
+        <SignUpField />
       </InputConatiner>
     </Container>
   );
@@ -25,14 +26,14 @@ const Container = styled.div`
   }
 `;
 const Banner = styled.div`
-  width: 50%;
+  width: 800px;
   min-width: 700px;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(180deg, #7653ff 10%, rgba(196, 196, 196, 0) 100%);
+  background: linear-gradient(180deg, #552aff 0%, #9a4fe6 100%);
 `;
 
 const BannerImage = styled.img`
@@ -40,8 +41,8 @@ const BannerImage = styled.img`
 `;
 
 const InputConatiner = styled.div`
-  width: 50%;
   min-width: 500px;
+  flex: 1;
   height: 100%;
   display: flex;
   flex-direction: column;

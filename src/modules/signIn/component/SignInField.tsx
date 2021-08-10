@@ -27,8 +27,20 @@ const SignInField = () => {
         onChange={onChangePassword}
         password
       />
-      <AccountPurpleBtn>SIGN IN</AccountPurpleBtn>
-      <AccountWhiteBtn onClick={()=>{Router.push('/signUp')}}>SIGN UP</AccountWhiteBtn>
+      <AccountPurpleBtn
+        onClick={() => {
+          Router.push(`/[workspace]`, 'warm-micro');
+        }}
+      >
+        SIGN IN
+      </AccountPurpleBtn>
+      <AccountWhiteBtn
+        onClick={() => {
+          Router.push('/signUp');
+        }}
+      >
+        SIGN UP
+      </AccountWhiteBtn>
     </Container>
   );
 };
