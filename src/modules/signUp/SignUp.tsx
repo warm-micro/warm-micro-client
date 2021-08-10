@@ -1,12 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import SignInField from './container/SignInField';
 
-const SignIn = () => {
+const SignUp = () => {
   return (
     <Container>
       <Banner>
-        <BannerImage src="images/signIn.png" />
+        <BannerImage src="images/signUp.png" />
       </Banner>
       <InputConatiner>
         <SignInField />
@@ -15,7 +14,7 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;
 
 const Container = styled.div`
   display: flex;
