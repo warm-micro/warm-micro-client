@@ -10,9 +10,9 @@ export const dummy = [
 
 export const dummySprint: SprintElementType[] = [
   { id: 'sp1', order: 0, title: '스프린트1', status: SprintStatusEnum.FINISH },
-  { id: 'sp2', order: 0, title: '스프린트2', status: SprintStatusEnum.FINISH },
-  { id: 'sp3', order: 0, title: '사용자 기능 구현', status: SprintStatusEnum.CURRENT },
-  { id: 'sp4', order: 0, title: '채팅 기능 구현', status: SprintStatusEnum.READY },
-  { id: 'sp5', order: 0, title: '게시판 기능 구현', status: SprintStatusEnum.READY },
-  { id: 'sp6', order: 0, title: '검색기능 구현', status: SprintStatusEnum.READY },
+  { id: 'sp2', order: 1, title: '스프린트2', status: SprintStatusEnum.FINISH },
+  { id: 'sp3', order: 2, title: '사용자 기능 구현', status: SprintStatusEnum.CURRENT },
+  { id: 'sp4', order: 3, title: '채팅 기능 구현', status: SprintStatusEnum.READY },
+  { id: 'sp5', order: 4, title: '게시판 기능 구현', status: SprintStatusEnum.READY },
+  { id: 'sp6', order: 5, title: '검색기능 구현', status: SprintStatusEnum.READY },
 ];

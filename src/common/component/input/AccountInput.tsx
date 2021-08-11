@@ -32,7 +32,6 @@ const Container = styled.div`
 
 const Input = styled.input`
   min-height: 50px;
-  font-family: 'GmarketSans';
   ::placeholder {
     color: #888888;
   }

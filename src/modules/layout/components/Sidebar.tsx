@@ -1,8 +1,15 @@
+import SprintList from '@/modules/sprintList/SprintList';
 import React from 'react';
 import styled from 'styled-components';
 
 const Sidebar = () => {
-  return <Container></Container>;
+  return (
+    (
+    <Container>
+        <SprintList  />
+      </Container>
+  )
+  );
 };
 
 export default Sidebar;

@@ -12,6 +12,11 @@ export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
     const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
+    const withCSS = require('@zeit/next-css');
+    module.exports = withCSS({
+      cssModules: true, // After true than use import statement in next.js
+    });
+
 
     try {
       ctx.renderPage = () =>
@@ -36,9 +41,7 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="ko">
-        <Head>
-          <link href="css/global.css" rel="stylesheet" />
-        </Head>
+        <Head></Head>
         <body>
           <Main />
           <NextScript />

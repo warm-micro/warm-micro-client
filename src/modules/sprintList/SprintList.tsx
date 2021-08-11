@@ -3,7 +3,13 @@ import React from 'react';
 import SprintElement from './components/SprintElement';
 
 const SprintList = () => {
-  return dummySprint.map((sprint) => <SprintElement sprint={...sprint} />);
+  return (
+    <>
+      {dummySprint.map((sprint) => (
+        <SprintElement key={sprint.id} {...sprint} />
+      ))}
+    </>
+  );
 };
 
 export default SprintList;
