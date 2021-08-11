@@ -1,14 +1,15 @@
+import { Title } from '@/common/component/textStyle/Title';
 import SprintList from '@/modules/sprintList/SprintList';
+import WorkspaceBtn from '@/modules/workspace/WorkspaceBtn';
 import React from 'react';
 import styled from 'styled-components';
 
 const Sidebar = () => {
   return (
-    (
     <Container>
-        <SprintList  />
-      </Container>
-  )
+      <WorkspaceBtn />
+      <SprintList />
+    </Container>
   );
 };
 
