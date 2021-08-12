@@ -1,15 +1,12 @@
 import MemberImg from '@/common/component/img/MemberImg';
+import { MemberType } from '@/common/types/member.type';
 import React from 'react';
 import styled from 'styled-components';
 import MemberActive from './MemberActive';
 
-interface MemberProps {
-  name: string;
-  url: string;
-  active: boolean;
-}
 
-const MemberElement = ({ name, url, active }: MemberProps) => {
+
+const MemberElement = ({ name, url, active }: MemberType) => {
   return (
     <Container>
       <MemberImg url={url} />
@@ -23,11 +20,20 @@ export default MemberElement;
 
 const Container = styled.div`
   display: flex;
-  margin: 10px 0;
+  height: 55px;
+  padding: 10px 20px;
   align-items: center;
   svg {
     margin-left: auto;
   }
+  &:hover {
+    color: #552bff;
+    div {
+      font-weight: 400;
+    }
+    background-color: #f6f3ff;
+  }
+  transition: background-color 0.5s ease;
 `;
 
 const MemberName = styled.div`

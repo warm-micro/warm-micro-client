@@ -25,6 +25,6 @@ const Container = styled.div`
   border-radius: 20px;
   margin: 25px 20px;
   img {
-    padding: 0 15px;
+    margin: 0 15px;
   }
 `;

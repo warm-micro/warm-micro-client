@@ -1,6 +1,6 @@
 import { SprintStatusEnum } from './enums/SprintStatusEnum';
 
-export type SprintElementType = {
+export interface SprintElementType {
   id: string;
   order: number;
   title: string;
