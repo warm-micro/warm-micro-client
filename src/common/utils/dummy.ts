@@ -25,6 +25,26 @@ export const dummySprintChat = [
     sprintId: 'sp1',
     chats: ['chat0', 'chat1', 'chat2'],
   },
+  {
+    sprintId: 'sp2',
+    chats: ['chat0', 'chat1', 'chat2'],
+  },
+  {
+    sprintId: 'sp3',
+    chats: ['chat0', 'chat1', 'chat2'],
+  },
+  {
+    sprintId: 'sp4',
+    chats: ['chat0'],
+  },
+  {
+    sprintId: 'sp4',
+    chats: ['chat1', 'chat2'],
+  },
+  {
+    sprintId: 'sp4',
+    chats: ['chat2'],
+  },
 ];
 
 export const dummySprintThread = [

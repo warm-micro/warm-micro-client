@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface ImageProps {
-  url: string;
+  url?: string;
 }
 
 const MemberImg = ({ url }: ImageProps) => {

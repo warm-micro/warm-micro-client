@@ -15,7 +15,6 @@ const ExitBtn = () => {
 export default ExitBtn;
 
 const Container = styled.div`
-  width: 100%;
   padding: 20px;
   img {
     transform: rotate(180deg);
