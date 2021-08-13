@@ -29,7 +29,10 @@ const SignInField = () => {
       />
       <AccountPurpleBtn
         onClick={() => {
-          Router.push(`/workspace/[workspace]`, '/workspace/warm-micro');
+          Router.push(
+            `/workspace/[workspace]/sprint/[sprintId]`,
+            '/workspace/warm-micro/sprint/sp1'
+          );
         }}
       >
         SIGN IN

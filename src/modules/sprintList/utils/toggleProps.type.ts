@@ -1,4 +1,4 @@
 export interface ToggleProps {
   toggled?: boolean;
-  OnToggle?: () => void;
+  onToggle?: () => void;
 }

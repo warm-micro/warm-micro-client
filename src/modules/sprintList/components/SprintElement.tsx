@@ -2,11 +2,22 @@ import React from 'react';
 import styled from 'styled-components';
 import { SprintElementType } from '@/common/types/sprintElement.type';
 import { SprintStatusEnum } from '@/common/types/enums/SprintStatusEnum';
+import { useRouter } from 'next/dist/client/router';
 
 
 const SprintElement = ({ ...sprint }: SprintElementType) => {
+
+  const router = useRouter();
   return (
-    <Container isCurrent={sprint.status === SprintStatusEnum.CURRENT}>
+    <Container
+      onClick={() =>
+        router.push(
+          '/workspace/[workspace]/sprint/[sprint]',
+          `/workspace/warm-micro/sprint/${sprint.id}`
+        )
+      }
+      isCurrent={sprint.status === SprintStatusEnum.CURRENT}
+    >
       <SprintNumber>#{sprint.order + 1}</SprintNumber>
       {sprint.title}
     </Container>

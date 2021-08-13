@@ -23,7 +23,7 @@ const SprintList = () => {
       <ListContainer>
         <FinishedSprintListToggle
           toggled={toggled}
-          OnToggle={() => setToggled(!toggled)}
+          onToggle={() => setToggled(!toggled)}
         />
         <ToggleListContainer toggled={toggled}>
           {dummySprint.map(

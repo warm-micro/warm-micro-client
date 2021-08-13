@@ -10,6 +10,7 @@ const MemberList = () => {
       <MemberListTitle>Direct Message</MemberListTitle>
       {Members.map((member) => (
         <MemberElement
+          key={member.id}
           id={member.id}
           name={member.name}
           url={member.url}

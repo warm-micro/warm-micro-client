@@ -58,7 +58,7 @@ export const Members: MemberType[] = [
   {
     id: '003',
     name: 'Ricky Eom',
-    url: '/images/jinho.png',
+    url: '/images/warm.png',
     active: false,
   },
 ];

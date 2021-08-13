@@ -6,9 +6,9 @@ import TriangleToggle from './TriangleToggle';
 
 
 
-const FinishedSprintListToggle = ({ toggled, OnToggle }: ToggleProps) => {
+const FinishedSprintListToggle = ({ toggled, onToggle }: ToggleProps) => {
   return (
-    <Container onClick={OnToggle} toggled={toggled}>
+    <Container onClick={onToggle} toggled={toggled}>
       <SubTitle>finished</SubTitle>
       <TriangleToggle />
     </Container>

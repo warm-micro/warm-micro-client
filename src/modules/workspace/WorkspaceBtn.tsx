@@ -17,6 +17,7 @@ export default WorkspaceBtn;
 const Container = styled.div`
   width: 240px;
   height: 60px;
+  min-height: 60px;
   display: flex;
   align-items: center;
   background: #d2c7ff;
