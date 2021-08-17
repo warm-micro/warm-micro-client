@@ -23,7 +23,7 @@ export const dummySprint: SprintElementType[] = [
 export const dummySprintChat = [
   {
     sprintId: 'sp1',
-    chats: ['chat0', 'chat1', 'chat2'],
+    chats: ['chat0', 'chat1', 'chat2', 'chat2', 'chat2'],
   },
   {
     sprintId: 'sp2',

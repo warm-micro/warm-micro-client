@@ -5,6 +5,7 @@ import Router, { useRouter } from 'next/dist/client/router';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Chat from '../components/Chat';
+import Textarea from '../components/Textarea';
 import ViewBtn from '../components/ViewBtn';
 
 const Board = () => {
@@ -39,9 +40,18 @@ const Board = () => {
         <ViewBtn view={view} onViewChange={onViewChange}></ViewBtn>
       </BoardHeader>
       <BoardContainer>
-        {chatIdList?.map((chatId) => (
-          <Chat key={chatId} chatId={chatId} onShowThreads={onShowThreads} />
-        ))}
+        <ChatContainer>
+          {chatIdList?.map((chatId) => (
+            <Chat key={chatId} chatId={chatId} onShowThreads={onShowThreads} />
+          ))}
+        </ChatContainer>
+        <InputContainer>
+          <Textarea
+            placeholder={`leave message to ${sprint ? sprint.order + 1 : 0}# ${
+              sprint?.title
+            }`}
+          />
+        </InputContainer>
       </BoardContainer>
     </Container>
   );
@@ -71,4 +81,19 @@ const BoardContainer = styled.div`
   background: #ffffff;
   box-shadow: 4px 8px 20px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
+`;
+
+const ChatContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+`;
+
+const InputContainer = styled.div`
+  padding: 20px;
+  margin-top: auto;
+  display: flex;
+  box-shadow: 0px -8px 16px rgba(0, 0, 0, 0.08);
 `;

@@ -18,7 +18,7 @@ export default SprintContent;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 30px;
   width: 100%;
   background-color: #faf9ff;
-  padding: 30px;
 `;
