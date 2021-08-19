@@ -23,7 +23,7 @@ export const dummySprint: SprintElementType[] = [
 export const dummySprintChat = [
   {
     sprintId: 'sp1',
-    chats: ['chat0', 'chat1', 'chat2', 'chat2', 'chat2'],
+    chats: ['chat0', 'chat1', 'chat2', 'chat3', 'chat4'],
   },
   {
     sprintId: 'sp2',
@@ -113,9 +113,27 @@ export const Chats: ChatType[] = [
     pTag: ['001'],
     hTag: ['디자인'],
   },
+  {
+    id: 'chat3',
+    sprintId: 'sp1',
+    time: new Date('2021-08-13 11:58:45'),
+    authorId: '001',
+    content: `오늘 1시에 개발팀 회의 있습니다. `,
+    pTag: ['001'],
+    hTag: ['디자인'],
+  },
+  {
+    id: 'chat4',
+    sprintId: 'sp1',
+    time: new Date('2021-08-14 11:58:50'),
+    authorId: '002',
+    content: `디비에 사용자 정보 넣기로 한거 그때 컬럼을id, password로 하고 다른 정보는 어떻게할까요`,
+    pTag: ['001'],
+    hTag: ['디자인'],
+  },
 ];
 
-export const Threads: ThreadType[] = [
+export const dummyThreads: ThreadType[] = [
   {
     id: 'thread0',
     chatId: 'chat0',

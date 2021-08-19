@@ -1,21 +1,24 @@
-import { Chats, Members } from '@/common/utils/dummy';
+import { Chats, dummySprintThread, Members } from '@/common/utils/dummy';
 import React from 'react';
 import styled from 'styled-components';
 import Author from './Author';
 
 interface ChatProps {
   chatId: string;
-  onShowThreads: () => void;
+  onShowThreads: (chatId: string) => void;
 }
 
 const Chat = ({ chatId, onShowThreads }: ChatProps) => {
   const chatInfo = Chats.find((chat) => chat.id === chatId);
+  const threadIds = dummySprintThread.find((threads) => threads.chatId === chatId);
 
   return chatInfo ? (
     <Container>
       <Author authorId={chatInfo.authorId} time={chatInfo.time} />
       <Content>{chatInfo.content}</Content>
-      <ThreadBtn onClick={() => onShowThreads()}>답글 보기</ThreadBtn>
+      <ThreadBtn onClick={() => onShowThreads(chatId)}>
+        {threadIds?.threads.length}개의 답글
+      </ThreadBtn>
     </Container>
   ) : (
     <></>
