@@ -1,3 +1,5 @@
+import { ProgressEnum } from '@/modules/sprintContent/utils/ProgressEnum';
+
 export interface ChatType {
   id: string;
   sprintId: string;
@@ -6,4 +8,6 @@ export interface ChatType {
   content: string;
   pTag: string[] | null;
   hTag: string[] | null;
+  isCard: boolean;
+  progress: ProgressEnum;
 }

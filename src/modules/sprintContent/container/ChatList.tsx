@@ -6,8 +6,8 @@ import Chat from '../components/Chat';
 import Textarea from '../components/Textarea';
 
 interface ChatsProps {
-  chatIdList: string[];
-  sprint: SprintElementType;
+  chatIdList?: string[];
+  sprint?: SprintElementType;
   onShowThreads: (chatId: string) => void;
 }
 

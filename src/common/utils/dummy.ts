@@ -1,3 +1,4 @@
+import { ProgressEnum } from '@/modules/sprintContent/utils/ProgressEnum';
 import { ChatType } from '../types/chat.type';
 import { SprintStatusEnum } from '../types/enums/SprintStatusEnum';
 import { MemberType } from '../types/member.type';
@@ -92,6 +93,8 @@ export const Chats: ChatType[] = [
     content: `오늘 논의하기로 한 사용자 기능에 대해서 회의를 진행하고자 합니다.  다들 10시 반 어떠신가요? `,
     pTag: ['002,003'],
     hTag: ['기획'],
+    isCard: true,
+    progress: ProgressEnum.FINISHED,
   },
   {
     id: 'chat1',
@@ -102,6 +105,8 @@ export const Chats: ChatType[] = [
 -> 오늘 토큰기반 인증 jwt 에 대한 공부를 하고 구글 로그인 api 를 사용하는 방법으로 공부할 예정임.`,
     pTag: [],
     hTag: [],
+    isCard: true,
+    progress: ProgressEnum.REVIEW,
   },
   {
     id: 'chat2',
@@ -112,6 +117,8 @@ export const Chats: ChatType[] = [
 #로그인 화면 #회원가입 화면 #마이페이지 #디자인`,
     pTag: ['001'],
     hTag: ['디자인'],
+    isCard: true,
+    progress: ProgressEnum.WORKINPROGRESS,
   },
   {
     id: 'chat3',
@@ -121,6 +128,8 @@ export const Chats: ChatType[] = [
     content: `오늘 1시에 개발팀 회의 있습니다. `,
     pTag: ['001'],
     hTag: ['디자인'],
+    isCard: true,
+    progress: ProgressEnum.BACKLOG,
   },
   {
     id: 'chat4',
@@ -130,6 +139,8 @@ export const Chats: ChatType[] = [
     content: `디비에 사용자 정보 넣기로 한거 그때 컬럼을id, password로 하고 다른 정보는 어떻게할까요`,
     pTag: ['001'],
     hTag: ['디자인'],
+    isCard: true,
+    progress: ProgressEnum.BACKLOG,
   },
 ];
 

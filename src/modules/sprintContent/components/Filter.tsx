@@ -72,7 +72,7 @@ const DropdownContainer = styled.div<DropdownProps>`
   box-shadow: 4px 8px 10px rgba(0, 0, 0, 0.25);
   border-radius: 0 0 10px 10px;
   padding-top: 20px;
-  transition: height 0.3s ease, opacity 0.3s ease;
+  transition: height 0.3s ease, opacity 0.4s ease;
   ${(props) => (props.show ? `height: 100px; opacity: 1;` : `height: 0px; opacity: 0;`)};
 `;
 
