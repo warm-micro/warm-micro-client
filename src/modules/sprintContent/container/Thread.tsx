@@ -15,8 +15,6 @@ const Thread = ({ chatId, showThread }: ThreadProps) => {
   const threadContents = dummyThreads.filter(
     (dummyThread) => dummyThread.chatId === chatId
   );
-  console.log(threadIds);
-  console.log(threadContents);
 
   return (
     <Container showThread={showThread}>

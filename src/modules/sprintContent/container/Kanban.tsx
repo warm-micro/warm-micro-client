@@ -12,29 +12,36 @@ import PersonKanban from './PersonKanban';
 
 interface KanbanProps {
   filter: FilterEnum;
-  chatIdList: string[];
+  chatIdList?: string[];
 }
 
 const Kanban = ({ filter, chatIdList }: KanbanProps) => {
   return (
     <Container>
       <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId="droppable-1">
+        <Droppable droppableId="droppable-1" direction="horizontal" type="columns">
           {(provided, snapshot) => (
-            <div
+            <Content
               ref={provided.innerRef}
               // style={{ backgroundColor: snapshot.isDraggingOver ? 'blue' : 'grey' }}
               {...provided.droppableProps}
             >
-              {filter === FilterEnum.PROGRESS ? (
-                <ProgressKanban chatIdList={chatIdList} />
-              ) : filter === FilterEnum.TAG ? (
-                <TagKanban />
-              ) : (
-                <PersonKanban />
-              )}
+              {chatIdList &&
+                (filter === FilterEnum.PROGRESS ? (
+                  <ProgressKanban
+                    show={filter === FilterEnum.PROGRESS}
+                    chatIdList={chatIdList}
+                  />
+                ) : filter === FilterEnum.TAG ? (
+                  <TagKanban show={filter === FilterEnum.TAG} chatIdList={chatIdList} />
+                ) : (
+                  <PersonKanban
+                    show={filter === FilterEnum.PERSON}
+                    chatIdList={chatIdList}
+                  />
+                ))}
               {provided.placeholder}
-            </div>
+            </Content>
           )}
         </Droppable>
       </DragDropContext>
@@ -46,9 +53,14 @@ export default Kanban;
 
 
 const Container = styled.div`
-  display: flex;
-  /* flex-direction: column; */
+  /* display: flex; */
   width: 100%;
   height: 100%;
-  min-height: 0px !important;
+
+  /* min-height: 0px !important; */
+`;
+const Content = styled.div`
+  display: flex;
+  /* width: 100%; */
+  height: 100%;
 `;

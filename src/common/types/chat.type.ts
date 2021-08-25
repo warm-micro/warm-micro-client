@@ -1,13 +1,17 @@
 import { ProgressEnum } from '@/modules/sprintContent/utils/ProgressEnum';
+import { hashTag } from './hashTag.type';
+import { personTag } from './personTag.type';
 
 export interface ChatType {
   id: string;
+  title: string;
   sprintId: string;
   time: Date;
   authorId: string;
   content: string;
-  pTag: string[] | null;
-  hTag: string[] | null;
+  pTag: personTag[] | null;
+  hTag: hashTag[] | null;
   isCard: boolean;
   progress: ProgressEnum;
+  progressOrder: number;
 }
