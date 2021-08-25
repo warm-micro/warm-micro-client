@@ -52,16 +52,9 @@ const Board = ({ onShowThreads }: BoardProps) => {
         </ButtonContainer>
       </BoardHeader>
       {view === ViewEnum.BOARD ? (
-        chatIdList &&
-        sprint && (
-          <ChatList
-            chatIdList={chatIdList}
-            sprint={sprint}
-            onShowThreads={onShowThreads}
-          />
-        )
+        <ChatList chatIdList={chatIdList} sprint={sprint} onShowThreads={onShowThreads} />
       ) : (
-        <Kanban />
+        <Kanban filter={filter} chatIdList={chatIdList} />
       )}
     </Container>
   );
@@ -72,7 +65,7 @@ export default Board;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  flex: 1;
+  width: 100%;
   height: 100%;
 `;
 
