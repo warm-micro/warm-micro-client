@@ -14,9 +14,10 @@ import Kanban from './Kanban';
 
 interface BoardProps {
   onShowThreads: (chatId: string) => void;
+  setShowThread: (showThread: boolean) => void;
 }
 
-const Board = ({ onShowThreads }: BoardProps) => {
+const Board = ({ setShowThread, onShowThreads }: BoardProps) => {
   // const [timeSplit, setTimeSplit] = useState(new Date());
   const [filter, setfilter] = useState(FilterEnum.PROGRESS);
   const router = useRouter();
@@ -29,6 +30,7 @@ const Board = ({ onShowThreads }: BoardProps) => {
   const [view, setView] = useState(ViewEnum.BOARD);
   const onViewChange = () => {
     if (view === ViewEnum.BOARD) {
+      setShowThread(false);
       setView(ViewEnum.KANBAN);
     } else {
       setView(ViewEnum.BOARD);
@@ -65,7 +67,8 @@ export default Board;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  flex: 1;
+  /* width: 100%; */
   height: 100%;
 `;
 

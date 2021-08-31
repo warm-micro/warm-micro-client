@@ -36,3 +36,6 @@ div#__next > div {
 *{
   font-family: 'GmarketSans';
 }
+body{
+  overflow:hidden;
+}

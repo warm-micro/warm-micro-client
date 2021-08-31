@@ -3,17 +3,25 @@ import styled from 'styled-components';
 import { Label } from '../textStyle/Label';
 
 type AccountInputType = {
+  value: string;
   label: string;
   placeholder: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   password?: boolean;
 };
 
-const AccountInput = ({ label, placeholder, onChange, password }: AccountInputType) => {
+const AccountInput = ({
+  value,
+  label,
+  placeholder,
+  onChange,
+  password,
+}: AccountInputType) => {
   return (
     <Container>
       <Label>{label}</Label>
       <Input
+        value={value}
         type={password ? 'password' : 'text'}
         placeholder={placeholder}
         onChange={onChange}
@@ -27,7 +35,7 @@ export default AccountInput;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 48px 0;
+  margin: 40px 0;
 `;
 
 const Input = styled.input`

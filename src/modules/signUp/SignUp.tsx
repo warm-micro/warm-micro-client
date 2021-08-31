@@ -19,7 +19,9 @@ export default SignUp;
 
 const Container = styled.div`
   display: flex;
-  width: 100%;
+  min-width: 1024px;
+  overflow: scroll;
+  scroll-behavior: smooth;
   height: 100%;
   button {
     margin-bottom: 20px;
@@ -27,7 +29,7 @@ const Container = styled.div`
 `;
 const Banner = styled.div`
   width: 800px;
-  min-width: 700px;
+  min-width: 550px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -37,13 +39,12 @@ const Banner = styled.div`
 `;
 
 const BannerImage = styled.img`
-  width: 600px;
+  width: 550px;
 `;
 
 const InputConatiner = styled.div`
-  min-width: 500px;
+  min-width: 450px;
   flex: 1;
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;

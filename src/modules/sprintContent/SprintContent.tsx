@@ -24,7 +24,7 @@ const SprintContent = () => {
         onSearch={() => {}}
       />
       <BoardContainer>
-        <Board onShowThreads={onShowThreads} />
+        <Board onShowThreads={onShowThreads} setShowThread={setShowThread} />
         <Thread chatId={threadChatId} showThread={showThread} />
       </BoardContainer>
     </Container>

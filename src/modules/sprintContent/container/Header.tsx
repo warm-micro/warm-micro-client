@@ -19,12 +19,7 @@ const Header = ({ value, onChange, onSearch }: HeaderProps) => {
         onSearch={onSearch}
       />
       <ButtonContainer>
-        <IconBtn
-          url={'/images/notification.png'}
-          width={30}
-          height={30}
-          onClick={() => {}}
-        />
+        <IconBtn url={'/images/settings.png'} width={30} height={30} onClick={() => {}} />
         <IconBtn url={'/images/user.png'} width={30} height={30} onClick={() => {}} />
       </ButtonContainer>
     </Container>

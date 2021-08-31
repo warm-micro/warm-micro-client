@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface ImageProps {
-  url: string;
+  url?: string;
 }
 
 const WorkspaceImg = ({ url }: ImageProps) => {
-  return <Image src={url} />;
+  return <Image src={url ? url : '/images/warm.png'} />;
 };
 
 export default WorkspaceImg;

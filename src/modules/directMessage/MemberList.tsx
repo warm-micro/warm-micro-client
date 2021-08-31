@@ -9,13 +9,7 @@ const MemberList = () => {
     <Container>
       <MemberListTitle>Direct Message</MemberListTitle>
       {Members.map((member) => (
-        <MemberElement
-          key={member.id}
-          id={member.id}
-          name={member.name}
-          url={member.url}
-          active={member.active}
-        />
+        <MemberElement key={member.id} member={member} />
       ))}
       {/* <MemberElement
         name={'Jinho Jeong'}
