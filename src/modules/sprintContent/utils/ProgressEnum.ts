@@ -1,6 +1,6 @@
 export enum ProgressEnum {
   BACKLOG = 'backlog',
-  WORKINPROGRESS = 'workinprogress',
+  INPROGRESS = 'inprogress',
   REVIEW = 'review',
   FINISHED = 'finished',
 }

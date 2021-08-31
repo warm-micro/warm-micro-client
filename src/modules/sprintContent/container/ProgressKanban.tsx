@@ -13,7 +13,7 @@ interface ProgressKanbanProps {
 
 const progressList = [
   ProgressEnum.BACKLOG,
-  ProgressEnum.WORKINPROGRESS,
+  ProgressEnum.INPROGRESS,
   ProgressEnum.REVIEW,
   ProgressEnum.FINISHED,
 ];
@@ -26,7 +26,7 @@ const ProgressKanban = ({show, chatIdList }: ProgressKanbanProps) => {
     .map(
       (id) =>
         Chats.filter(
-          (chat) => chat.id == id && chat.progress == ProgressEnum.WORKINPROGRESS
+          (chat) => chat.id == id && chat.progress == ProgressEnum.INPROGRESS
         )[0]
     )
     .filter((card) => card !== undefined);
@@ -48,7 +48,7 @@ const ProgressKanban = ({show, chatIdList }: ProgressKanbanProps) => {
 
   const progressMap = {
     [ProgressEnum.BACKLOG]: { title: 'Backlog', list: backlogCols },
-    [ProgressEnum.WORKINPROGRESS]: {
+    [ProgressEnum.INPROGRESS]: {
       title: 'Work in Progress',
       list: workInProgressCols,
     },

@@ -17,7 +17,7 @@ const Chat = ({ chatId, onShowThreads }: ChatProps) => {
       <Author authorId={chatInfo.authorId} time={chatInfo.time} />
       <Content>{chatInfo.content}</Content>
       <ThreadBtn onClick={() => onShowThreads(chatId)}>
-        {threadIds?.threads.length}개의 답글
+        {threadIds && `${threadIds.threads.length}개의 답글`}
       </ThreadBtn>
     </Container>
   ) : (

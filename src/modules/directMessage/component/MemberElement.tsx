@@ -4,14 +4,16 @@ import React from 'react';
 import styled from 'styled-components';
 import MemberActive from './MemberActive';
 
+interface MemberElementProps {
+  member: MemberType;
+}
 
-
-const MemberElement = ({ name, url, active }: MemberType) => {
+const MemberElement = ({ member }: MemberElementProps) => {
   return (
     <Container>
-      <MemberImg url={url} />
-      <MemberName>{name}</MemberName>
-      <MemberActive active={active} />
+      <MemberImg url={member.url} />
+      <MemberName>{member.name}</MemberName>
+      <MemberActive active={member.active} />
     </Container>
   );
 };

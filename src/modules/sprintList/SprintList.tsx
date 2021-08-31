@@ -1,6 +1,7 @@
 import { Title } from '@/common/component/textStyle/Title';
 import { SprintStatusEnum } from '@/common/types/enums/SprintStatusEnum';
-import { dummySprint } from '@/common/utils/dummy';
+import { dummy, dummySprint } from '@/common/utils/dummy';
+import { useRouter } from 'next/dist/client/router';
 import React, { useState } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import FinishedSprintListToggle from './components/FinishedSprintListToggle';
@@ -9,12 +10,17 @@ import { ToggleProps } from './utils/toggleProps.type';
 
 const SprintList = () => {
   const [toggled, setToggled] = useState(false);
+  const { query } = useRouter();
+  const sprintList = dummy.find(
+    (workspace) => workspace.name === query.workspace
+  )?.sprintList;
   return (
     <Container>
       <ListContainer>
         <SprintListTitle>SprintList</SprintListTitle>
         {dummySprint.map(
           (sprint) =>
+            sprintList?.includes(sprint.id) &&
             sprint.status !== SprintStatusEnum.FINISH && (
               <SprintElement key={sprint.id} {...sprint} />
             )

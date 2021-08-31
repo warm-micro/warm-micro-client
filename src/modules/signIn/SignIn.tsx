@@ -19,16 +19,17 @@ export default SignIn;
 
 const Container = styled.div`
   display: flex;
-  width: 100%;
-  height: 100%;
+  min-width: 1024px;
+  overflow: scroll;
+  scroll-behavior: smooth;
+  margin: 0 auto;
   button {
     margin-bottom: 20px;
   }
 `;
 const Banner = styled.div`
   width: 800px;
-  min-width: 700px;
-  height: 100%;
+  min-width: 550px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,14 +38,13 @@ const Banner = styled.div`
 `;
 
 const BannerImage = styled.img`
-  width: 600px;
+  width: 550px;
 `;
 
 const InputConatiner = styled.div`
-  min-width: 500px;
-  height: 100%;
-  display: flex;
+  min-width: 450px;
   flex: 1;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;

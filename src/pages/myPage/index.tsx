@@ -1,7 +1,8 @@
+import MyPage from '@/modules/myPage/MyPage';
 import React from 'react';
 
 const index = () => {
-  return <div></div>;
+  return <MyPage  />;
 };
 
 export default index;

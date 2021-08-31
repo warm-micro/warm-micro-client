@@ -20,18 +20,18 @@ const SignInField = () => {
   return (
     <Container>
       <BigTitle>SIGN IN</BigTitle>
-      <AccountInput label={'Id'} placeholder={'Enter your Id...'} onChange={onChangeId} />
-      <AccountInput
+      <AccountInput value={id} label={'Id'} placeholder={'Enter your Id...'} onChange={onChangeId}  />
+      <AccountInput 
         label={'Password'}
         placeholder={'Enter your password...'}
         onChange={onChangePassword}
+        value={password}
         password
       />
       <AccountPurpleBtn
         onClick={() => {
           Router.push(
-            `/workspace/[workspace]/sprint/[sprintId]`,
-            '/workspace/warm-micro/sprint/sp1'
+            `/myPage`,
           );
         }}
       >
