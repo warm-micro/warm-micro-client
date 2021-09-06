@@ -1,3 +1,5 @@
+import MailIcon from '@/common/component/icon/MailIcon';
+import PhoneIcon from '@/common/component/icon/PhoneIcon';
 import DmProfileImg from '@/common/component/img/DmProfileImg';
 import { Members } from '@/common/utils/dummy';
 import { useRouter } from 'next/dist/client/router';
@@ -13,7 +15,16 @@ const Header = () => {
         <DmProfileImg url={member?.url} />
         <Name>{member?.name}</Name>
       </DmProfileContainer>
-      <DmProfileDetailContainer></DmProfileDetailContainer>
+      <DmProfileDetailContainer>
+        <DetailContainer>
+          <PhoneIcon />
+          <div>{member?.phoneNumber}</div>
+        </DetailContainer>
+        <DetailContainer>
+          <MailIcon  />
+          <div>{member?.email}</div>
+        </DetailContainer>
+      </DmProfileDetailContainer>
     </Container>
   );
 };
@@ -25,20 +36,30 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0 60px;
-  width: 100%;
-  height: 150px;
-  min-height: 150px;
+  height: 130px;
+  min-height: 130px;
   position: sticky;
   top: 0;
   background: #552aff;
+  color: #ffffff;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.08);
 `;
 
 const DmProfileContainer = styled.div`
   display: flex;
   align-items: center;
 `;
+const DetailContainer = styled.div`
+  display: flex;
+  align-items: center;
+  svg{
+    margin-right: 10px;
+  }
+  padding: 8px 0;
+`;
 const DmProfileDetailContainer = styled.div`
   display: flex;
+  align-items: flex-end;
   flex-direction: column;
 `;
 

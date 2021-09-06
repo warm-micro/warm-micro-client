@@ -7,6 +7,9 @@ import { SprintElementType } from '../types/sprintElement.type';
 import { ThreadType } from '../types/thread.type';
 import { WorkspaceType } from '../types/workspace.type';
 
+
+
+
 export const dummy: WorkspaceType[]   = [
   {
     id: '01',
@@ -97,15 +100,15 @@ export const Members: MemberType[] = [
     name: 'Hyewon Kwak',
     url: '/images/hyewon.jpg',
     email: 'khw121699@gmail.com',
-    phoneNumber: '01027038658',
+    phoneNumber: '010-2703-8658',
     active: true,
   },
   {
     id: '002',
     name: 'Jinho Jeong',
     url: '/images/jinho.png',
-    email: 'hahao@gmail.com',
-    phoneNumber: '01027038658',
+    email: 'hahoh0013@gmail.com',
+    phoneNumber: '010-2703-8658',
     active: false,
   },
   {
@@ -113,7 +116,7 @@ export const Members: MemberType[] = [
     name: 'Ricky Eom',
     url: '/images/eom.png',
     email: 'jungbin0329@gmail.com',
-    phoneNumber: '01027038658',
+    phoneNumber: '010-2703-8658',
     active: false,
   },
 ];
