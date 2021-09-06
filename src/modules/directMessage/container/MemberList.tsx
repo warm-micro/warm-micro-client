@@ -2,7 +2,7 @@ import { Title } from '@/common/component/textStyle/Title';
 import { Members } from '@/common/utils/dummy';
 import React from 'react';
 import styled from 'styled-components';
-import MemberElement from './component/MemberElement';
+import MemberElement from '../component/MemberElement';
 
 const MemberList = () => {
   return (
