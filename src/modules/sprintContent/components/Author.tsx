@@ -7,7 +7,7 @@ import styled from 'styled-components';
 
 interface AuthorProps {
   authorId: string;
-  time: Date;
+  time?: Date;
 }
 
 const Author = ({ authorId, time }: AuthorProps) => {
@@ -18,11 +18,14 @@ const Author = ({ authorId, time }: AuthorProps) => {
       <TextContainer>
         <Name>{authorInfo?.name}</Name>
         <Time>
-          {time.toLocaleString('en-US', {
-            hour: 'numeric',
-            minute: 'numeric',
-            hour12: true,
-          })}
+          {time
+             ? time.toLocaleString('en-US', {
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: true,
+                  })
+            
+            : authorInfo?.id}
         </Time>
       </TextContainer>
     </Container>

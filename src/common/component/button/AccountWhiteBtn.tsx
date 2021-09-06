@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const AccountWhiteBtn = styled.button`
-  width: 400px;
+  width: 100%;
   height: 50px;
   font-size: 18px;
   color: #606060;

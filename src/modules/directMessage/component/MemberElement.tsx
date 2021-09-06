@@ -21,6 +21,7 @@ const MemberElement = ({ member }: MemberElementProps) => {
 export default MemberElement;
 
 const Container = styled.div`
+  cursor: pointer;
   display: flex;
   height: 55px;
   padding: 10px 20px;
