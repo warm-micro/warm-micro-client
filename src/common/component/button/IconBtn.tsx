@@ -5,12 +5,12 @@ interface BtnProps {
   url?: string;
   width?: number;
   height?: number;
-  onClick: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
 }
 
 const IconBtn = ({ url, width, height, onClick }: BtnProps) => {
   return (
-    <Container height={height} width={width} onClick={() => onClick}>
+    <Container height={height} width={width} onClick={onClick}>
       <img src={url} />
     </Container>
   );
