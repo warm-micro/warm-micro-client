@@ -44,6 +44,5 @@ const DetailContainer = styled.div`
 
 const Content = styled.div`
   display: flex;
-  /* width: 100%; */
   margin-top: 40px;
 `;

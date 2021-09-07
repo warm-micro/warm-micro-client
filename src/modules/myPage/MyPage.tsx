@@ -25,7 +25,6 @@ export default MyPage;
 const Container = styled.div`
   display: flex;
   flex: 1;
-  min-height: 100vh;
   min-width: 1024px;
   overflow: scroll;
   background: linear-gradient(180deg, #552aff 0%, #9a4fe6 100%), #ffffff;
@@ -37,6 +36,5 @@ const Content = styled.div`
   margin: 62px 70px;
   background: rgba(255, 255, 255, 0.3);
   border-radius: 50px;
-
   box-sizing: border-box;
 `;

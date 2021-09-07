@@ -20,9 +20,11 @@ export default Input;
 const Container = styled.div`
   display: flex;
   width: 100%;
-  flex-wrap: wrap;
+  // 헐 해결했다 뮈췬
+  box-sizing: border-box;
   position: absolute;
   bottom: 0;
+  left: 0;
   padding: 30px 50px;
   align-items: center;
   background: #ffffff;
