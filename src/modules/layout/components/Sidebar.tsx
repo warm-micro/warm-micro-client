@@ -1,6 +1,6 @@
 import { Title } from '@/common/component/textStyle/Title';
 import ExitBtn from '@/modules/directMessage/component/ExitBtn';
-import MemberList from '@/modules/directMessage/MemberList';
+import MemberList from '@/modules/directMessage/container/MemberList';
 import SprintList from '@/modules/sprintList/SprintList';
 import WorkspaceBtn from '@/modules/workspace/WorkspaceBtn';
 import React from 'react';
