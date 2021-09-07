@@ -30,5 +30,5 @@ const Container = styled.div`
   margin-top: auto;
   display: flex;
   flex-direction: column;
-  min-height: 300px;
+  min-height: 250px;
 `;

@@ -1,5 +1,6 @@
 import { ProgressEnum } from '@/modules/sprintContent/utils/ProgressEnum';
 import { ChatType } from '../types/chat.type';
+import { DirectMessageType } from '../types/directMessage.type';
 import { ColorEnum } from '../types/enums/ColorEnum';
 import { SprintStatusEnum } from '../types/enums/SprintStatusEnum';
 import { MemberType } from '../types/member.type';
@@ -8,9 +9,48 @@ import { ThreadType } from '../types/thread.type';
 import { WorkspaceType } from '../types/workspace.type';
 
 
+export const dummyMessage: DirectMessageType[] = [
+  {
+    id: '01',
+    sender: '002',
+    receiver: '001',
+    time: new Date('2021-08-11 10:24:30'),
+    messageContent: '오늘 점심은 어떤 걸로 먹을까요? 짜장면? 밀면? 마라탕?',
+  },
+  {
+    id: '02',
+    sender: '001',
+    receiver: '002',
+    time: new Date('2021-08-11 10:24:35'),
+    messageContent: '흠.. 오늘은 칼칼하고 매운게 땡기긴 한데.. 진호님 매운거 잘드십니까?',
+  },
+  {
+    id: '03',
+    sender: '002',
+    receiver: '001',
+    time: new Date('2021-08-11 10:24:36'),
+    messageContent: '음 어느정도 잘 먹는거 같긴합니다. 오늘 날도 흐리고 좀 추워졌으니 따뜻하고 매운 마라탕으로 가시죠',
+  },
+  {
+    id: '04',
+    sender: '001',
+    receiver: '002',
+    time: new Date('2021-08-11 10:24:50'),
+    messageContent:
+      `오 ㄱㄱㄱ 좋습니다. 한 3단계정도에 소고기 추가해서 먹읍시다. 
+      어디서 시킬까요?`,
+  },
+  {
+    id: '05',
+    sender: '002',
+    receiver: '001',
+    time: new Date('2021-08-11 10:24:55'),
+    messageContent: '천라 쿵푸 기기기',
+  },
+ 
+];
 
-
-export const dummy: WorkspaceType[]   = [
+export const dummy: WorkspaceType[] = [
   {
     id: '01',
     name: 'warm-micro',

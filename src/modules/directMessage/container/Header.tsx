@@ -5,6 +5,7 @@ import { Members } from '@/common/utils/dummy';
 import { useRouter } from 'next/dist/client/router';
 import React from 'react';
 import styled from 'styled-components';
+import MemberActive from '../component/MemberActive';
 
 const Header = () => {
   const router = useRouter();
@@ -12,6 +13,7 @@ const Header = () => {
   return (
     <Container>
       <DmProfileContainer>
+        <MemberActive active={member?.active} />
         <DmProfileImg url={member?.url} />
         <Name>{member?.name}</Name>
       </DmProfileContainer>
@@ -21,7 +23,7 @@ const Header = () => {
           <div>{member?.phoneNumber}</div>
         </DetailContainer>
         <DetailContainer>
-          <MailIcon  />
+          <MailIcon />
           <div>{member?.email}</div>
         </DetailContainer>
       </DmProfileDetailContainer>
@@ -48,6 +50,12 @@ const Container = styled.div`
 const DmProfileContainer = styled.div`
   display: flex;
   align-items: center;
+  svg {
+    position: relative;
+    left: 4px;
+    padding-bottom: 70px;
+    z-index: 1;
+  }
 `;
 const DetailContainer = styled.div`
   display: flex;
