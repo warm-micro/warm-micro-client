@@ -39,4 +39,7 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  box-sizing: border-box;
+  padding: 50px 50px 200px 50px;
+  overflow-y: scroll;
 `;
