@@ -14,9 +14,9 @@ const DirectMessage = () => {
       <Content>
         {dummyMessage.map((message) =>
           message.sender === me ? (
-            <SendedItem message={message} />
+            <SendedItem key={message.id} message={message} />
           ) : (
-            <ReceivedItem message={message} />
+            <ReceivedItem key={message.id} message={message} />
           )
         )}
       </Content>
