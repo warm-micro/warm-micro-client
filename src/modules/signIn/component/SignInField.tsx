@@ -2,11 +2,13 @@ import { AccountPurpleBtn } from '@/common/component/button/AccountPurpleBtn';
 import { AccountWhiteBtn } from '@/common/component/button/AccountWhiteBtn';
 import AccountInput from '@/common/component/input/AccountInput';
 import { BigTitle } from '@/common/component/textStyle/BigTitle';
-import Router  from 'next/dist/client/router';
+import Router, { useRouter } from 'next/dist/client/router';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { signIn } from '../utils/signIn';
 
 const SignInField = () => {
+  const router = useRouter();
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
 
@@ -17,29 +19,30 @@ const SignInField = () => {
     setPassword(e.target.value);
   };
 
+  const onSubmit = () => {
+    signIn(id, password);
+  };
+
   return (
     <Container>
       <BigTitle>SIGN IN</BigTitle>
-      <AccountInput value={id} label={'Id'} placeholder={'Enter your Id...'} onChange={onChangeId}  />
-      <AccountInput 
+      <AccountInput
+        value={id}
+        label={'Id'}
+        placeholder={'Enter your Id...'}
+        onChange={onChangeId}
+      />
+      <AccountInput
         label={'Password'}
         placeholder={'Enter your password...'}
         onChange={onChangePassword}
         value={password}
         password
       />
-      <AccountPurpleBtn
-        onClick={() => {
-          Router.push(
-            `/myPage`,
-          );
-        }}
-      >
-        SIGN IN
-      </AccountPurpleBtn>
+      <AccountPurpleBtn onClick={onSubmit}>SIGN IN</AccountPurpleBtn>
       <AccountWhiteBtn
         onClick={() => {
-          Router.push('/signUp');
+          router.push('/signUp');
         }}
       >
         SIGN UP

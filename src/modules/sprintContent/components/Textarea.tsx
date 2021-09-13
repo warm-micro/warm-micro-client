@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 interface TextareaProps {
   placeholder: string;
+  value: string;
+  onChange: (e:React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-const Textarea = ({ placeholder }: TextareaProps) => {
+const Textarea = ({ placeholder,value, onChange }: TextareaProps) => {
+  
   return (
     <Container>
-      <Input placeholder={placeholder}></Input>
+      <Input placeholder={placeholder} value={value} onChange={onChange}></Input>
       <ButtonContainer></ButtonContainer>
     </Container>
   );
@@ -20,7 +23,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 124px;
+  height: 100px;
   border: 1px solid #606060;
   border-radius: 10px;
   padding-top: 20px;
@@ -29,7 +32,7 @@ const Container = styled.div`
 `;
 
 const Input = styled.textarea`
-  padding: 0 20px;
+  padding: 0 15px;
   border: none;
   outline: none;
   font-size: 14px;
@@ -44,7 +47,7 @@ const Input = styled.textarea`
 const ButtonContainer = styled.div`
   display: flex;
   width: 100%;
-  height: 36px;
-  min-height: 36px;
+  height: 30px;
+  min-height: 30px;
   border-top: 1px solid #606060;
 `;

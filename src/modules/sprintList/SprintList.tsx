@@ -34,6 +34,7 @@ const SprintList = () => {
         <ToggleListContainer toggled={toggled}>
           {dummySprint.map(
             (sprint) =>
+              sprintList?.includes(sprint.id) &&
               sprint.status === SprintStatusEnum.FINISH && (
                 <SprintElement key={sprint.id} {...sprint} />
               )

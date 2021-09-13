@@ -1,11 +1,13 @@
 import { AccountPurpleBtn } from '@/common/component/button/AccountPurpleBtn';
 import AccountInput from '@/common/component/input/AccountInput';
 import { BigTitle } from '@/common/component/textStyle/BigTitle';
-import Router from 'next/dist/client/router';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { signUp } from '../utils/signUp';
 
 const SignUpField = () => {
+  const router = useRouter();
   const [id, setId] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -30,6 +32,21 @@ const SignUpField = () => {
   };
   const onChangeCheckPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCheckPassword(e.target.value);
+  };
+
+  const onSubmit = () => {
+    if (password === checkPassword) {
+      signUp({
+        username: id,
+        password: password,
+        nickname: name,
+        phoneNumber: phoneNumber,
+        email: email,
+      });
+      router.push('/signIn');
+    } else {
+      alert('비밀번호를 다시 확인해주세요!');
+    }
   };
 
   return (
@@ -73,13 +90,7 @@ const SignUpField = () => {
         onChange={onChangeCheckPassword}
         password
       />
-      <AccountPurpleBtn
-        onClick={() => {
-          Router.push('/signIn');
-        }}
-      >
-        SIGN UP
-      </AccountPurpleBtn>
+      <AccountPurpleBtn onClick={onSubmit}>SIGN UP</AccountPurpleBtn>
     </Container>
   );
 };

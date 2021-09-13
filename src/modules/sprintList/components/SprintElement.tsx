@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { SprintElementType } from '@/common/types/sprintElement.type';
 import { SprintStatusEnum } from '@/common/types/enums/SprintStatusEnum';
 import { useRouter } from 'next/dist/client/router';
+import { route } from 'next/dist/next-server/server/router';
 
 
 const SprintElement = ({ ...sprint }: SprintElementType) => {
@@ -13,7 +14,7 @@ const SprintElement = ({ ...sprint }: SprintElementType) => {
       onClick={() =>
         router.push(
           '/workspace/[workspace]/sprint/[sprint]',
-          `/workspace/warm-micro/sprint/${sprint.id}`
+          `/workspace/${router.query.workspace}/sprint/${sprint.id}`
         )
       }
       isCurrent={sprint.status === SprintStatusEnum.CURRENT}

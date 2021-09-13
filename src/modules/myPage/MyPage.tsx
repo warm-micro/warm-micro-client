@@ -1,29 +1,44 @@
 import { MemberType } from '@/common/types/member.type';
 import { Members } from '@/common/utils/dummy';
-import React, { useState } from 'react';
+import { AnyAction } from '@reduxjs/toolkit';
+import { NextPage, NextPageContext } from 'next';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import MyInfo from './container/MyInfo';
 import MyInfoDetail from './container/MyInfoDetail';
+import myInfoReducer, { selectMyInfo } from './utils/myInfo.slice';
+
 
 const MyPage = () => {
-  const [member, setMember] = useState<MemberType>({ ...Members[0] });
+  const dispatch = useDispatch();
+  const myInfo = useSelector(selectMyInfo);
+  // const [member, setMember] = useState<MemberType>({ ...Members[0] });
   const onChangeInfoName = (newName: string) => {
-    setMember({ ...member, name: newName });
+    // setMember({ ...member, name: newName });
   };
+
+  useEffect(() => {
+    // if(myInfo.myInfo.id === ""){
+      dispatch(myInfoReducer.actions.fetchMyInfoStart());
+    // }
+    console.group(myInfo);
+  }, []);
   return (
     <Container>
       <Content>
-        <MyInfo member={member} onChangeInfoName={onChangeInfoName} />
-        <MyInfoDetail member={member} />
+        <MyInfo member={myInfo.myInfo} onChangeInfoName={onChangeInfoName} />
+        <MyInfoDetail member={myInfo.myInfo} />
       </Content>
     </Container>
   );
-};
+};;
 
 export default MyPage;
 
 const Container = styled.div`
   display: flex;
+  flex-wrap: wrap;
   flex: 1;
   min-width: 1024px;
   overflow: scroll;
@@ -38,3 +53,4 @@ const Content = styled.div`
   border-radius: 50px;
   box-sizing: border-box;
 `;
+

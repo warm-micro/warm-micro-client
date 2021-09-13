@@ -43,9 +43,6 @@ const ProgressKanban = ({show, chatIdList }: ProgressKanbanProps) => {
     )
     .filter((card) => card !== undefined);
 
-  // console.log(backlogCols,workInProgressCols,reviewCols,finishedCols);
-    
-
   const progressMap = {
     [ProgressEnum.BACKLOG]: { title: 'Backlog', list: backlogCols },
     [ProgressEnum.INPROGRESS]: {
