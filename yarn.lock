@@ -345,6 +345,32 @@
   resolved "https://registry.npmjs.org/@types/js-cookie/-/js-cookie-2.2.7.tgz"
   integrity sha512-aLkWa0C0vO5b4Sr798E26QgOkss68Un0bLjs7u9qxzPT5CG+8DuNTffWES58YzJs3hrVAOs1wonycqEBqNJubA==
 
+"@types/next-redux-saga@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.npmjs.org/@types/next-redux-saga/-/next-redux-saga-3.0.2.tgz"
+  integrity sha512-CsFSvQ4MRyOqALoDQ3zGC9E+PaKYgf/DPm9Nhftm274IXtDNtAVsxV/P5N19mjY97+LvyVWz9BfC3YevBpECzw==
+  dependencies:
+    "@types/next-redux-wrapper" "^2.0.2"
+    "@types/react" "*"
+    redux "^3.6.0"
+
+"@types/next-redux-wrapper@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.npmjs.org/@types/next-redux-wrapper/-/next-redux-wrapper-2.0.2.tgz"
+  integrity sha512-/PJbBiq+MB7SVQ5MEqfOrZelW8CBEbPXi59qkZ0JdyzWDmJZPgcEuGDZnjPITvENoVgxqunhwkg0Qb+s3ZUCTw==
+  dependencies:
+    "@types/node" "*"
+    "@types/react" "*"
+    "@types/react-redux" "*"
+    redux "^3.6.0"
+
+"@types/next@^9.0.0":
+  version "9.0.0"
+  resolved "https://registry.npmjs.org/@types/next/-/next-9.0.0.tgz"
+  integrity sha512-gnBXM8rP1mnCgT1uE2z8SnpFTKRWReJlhbZLZkOLq/CH1ifvTNwjIVtXvsywTy1dwVklf+y/MB0Eh6FOa94yrg==
+  dependencies:
+    next "*"
+
 "@types/node@*":
   version "16.3.2"
   resolved "https://registry.npmjs.org/@types/node/-/node-16.3.2.tgz"
@@ -367,7 +393,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-redux@^7.1.16", "@types/react-redux@^7.1.18":
+"@types/react-redux@*", "@types/react-redux@^7.1.16", "@types/react-redux@^7.1.18":
   version "7.1.18"
   resolved "https://registry.npmjs.org/@types/react-redux/-/react-redux-7.1.18.tgz"
   integrity sha512-9iwAsPyJ9DLTRH+OFeIrm9cAbIj1i2ANL3sKQFATqnPWRbg+jEFXyZOKHiQK/N86pNRXbb4HRxAxo0SIX1XwzQ==
@@ -2317,6 +2343,11 @@ locate-path@^5.0.0:
   dependencies:
     p-locate "^4.1.0"
 
+lodash-es@^4.2.1:
+  version "4.17.21"
+  resolved "https://registry.npmjs.org/lodash-es/-/lodash-es-4.17.21.tgz"
+  integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
+
 lodash.camelcase@^4.3.0:
   version "4.3.0"
   resolved "https://registry.npmjs.org/lodash.camelcase/-/lodash.camelcase-4.3.0.tgz"
@@ -2342,7 +2373,7 @@ lodash.truncate@^4.4.2:
   resolved "https://registry.npmjs.org/lodash.truncate/-/lodash.truncate-4.4.2.tgz"
   integrity sha1-WjUNoLERO4N+z//VgSy+WNbq4ZM=
 
-lodash@^4.17.11, lodash@^4.17.13:
+lodash@^4.17.11, lodash@^4.17.13, lodash@^4.2.1:
   version "4.17.21"
   resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
@@ -2471,12 +2502,17 @@ natural-compare@^1.4.0:
   resolved "https://registry.npmjs.org/natural-compare/-/natural-compare-1.4.0.tgz"
   integrity sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=
 
+next-redux-saga@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.npmjs.org/next-redux-saga/-/next-redux-saga-4.1.2.tgz"
+  integrity sha512-UEI/8bRObquIpHeHX1RuqOFBe2zhI2gTHLijBLiinOZrCbir18B4/lJpymrEoHHpel0iiZEwV4R6jeUWYv+Avw==
+
 next-redux-wrapper@^7.0.4:
   version "7.0.4"
   resolved "https://registry.npmjs.org/next-redux-wrapper/-/next-redux-wrapper-7.0.4.tgz"
   integrity sha512-AYMS3mZCsdqRP1TpKxzPmwCSKOe1Koq/bklUZG6inLUGQQWsbHRogr0N8BHGms6Bh3HTCsic53ztAnbwopQagg==
 
-next@11.0.1:
+next@*, next@11.0.1:
   version "11.0.1"
   resolved "https://registry.npmjs.org/next/-/next-11.0.1.tgz"
   integrity sha512-yR7be7asNbvpVNpi6xxEg28wZ7Gqmj1nOt0sABH9qORmF3+pms2KZ7Cng33oK5nqPIzEEFJD0pp2PCe3/ueMIg==
@@ -3191,6 +3227,16 @@ redux-thunk@^2.3.0:
   resolved "https://registry.npmjs.org/redux-thunk/-/redux-thunk-2.3.0.tgz"
   integrity sha512-km6dclyFnmcvxhAcrQV2AkZmPQjzPDjgVlQtR0EQjxZPyJ0BnMf3in1ryuR8A2qU0HldVRfxYXbFSKlI3N7Slw==
 
+redux@^3.6.0:
+  version "3.7.2"
+  resolved "https://registry.npmjs.org/redux/-/redux-3.7.2.tgz"
+  integrity sha512-pNqnf9q1hI5HHZRBkj3bAngGZW/JMCmexDlOxw4XagXY2o1327nHH54LoTjiPJ0gizoqPDRqWyX/00g0hD6w+A==
+  dependencies:
+    lodash "^4.2.1"
+    lodash-es "^4.2.1"
+    loose-envify "^1.1.0"
+    symbol-observable "^1.0.3"
+
 redux@^4.0.0, redux@^4.0.4, redux@^4.1.0:
   version "4.1.1"
   resolved "https://registry.npmjs.org/redux/-/redux-4.1.1.tgz"
@@ -3660,6 +3706,11 @@ supports-color@^8.0.0:
   dependencies:
     has-flag "^4.0.0"
 
+symbol-observable@^1.0.3:
+  version "1.2.0"
+  resolved "https://registry.npmjs.org/symbol-observable/-/symbol-observable-1.2.0.tgz"
+  integrity sha512-e900nM8RRtGhlV36KGEU9k65K3mPb1WV70OdjfxlG2EAuM1noi/E/BaW/uMhL7bPEssK8QV57vN3esixjUvcXQ==
+
 table@^6.0.9:
   version "6.7.1"
   resolved "https://registry.npmjs.org/table/-/table-6.7.1.tgz"
@@ -3773,7 +3824,7 @@ type-fest@^0.7.1:
 
 typed-redux-saga@^1.3.1:
   version "1.3.1"
-  resolved "https://registry.npmjs.org/typed-redux-saga/-/typed-redux-saga-1.3.1.tgz"
+  resolved "https://registry.yarnpkg.com/typed-redux-saga/-/typed-redux-saga-1.3.1.tgz#92b01db41e3510102f87eb9ff261ec73d38a2e44"
   integrity sha512-nUj1/1/SAesEsZrr7o24ID+++CqZ6QfPVDcwhY2rVmm4vEBr/vbDHJ6j/w6SomOcooLwnh3sdaWVhNEIy7VgNA==
   optionalDependencies:
     "@babel/helper-module-imports" "^7.12.1"

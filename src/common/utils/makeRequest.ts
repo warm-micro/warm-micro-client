@@ -28,9 +28,10 @@ const makeRequest = async <T>({
       params: query,
     };
     requestConfig.headers = headers ? { ...headers } : {};
-    if (token) {
-      requestConfig.headers.Authorization = `Bearer ${token}`;
-    }
+    // if (token) {
+    requestConfig.headers.Authorization = token;
+    // `Bearer ${token}`;
+    // }
     response = await axios.request<T>(requestConfig);
   } catch (error) {
     console.log(error);

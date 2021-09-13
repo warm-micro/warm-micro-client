@@ -57,7 +57,7 @@ export const dummy: WorkspaceType[] = [
     sprintList: ['sp1', 'sp2', 'sp3', 'sp4', 'sp5', 'sp6'],
     url: '/images/warm.png',
   },
-  { id: '01', name: 'linker', sprintList: ['sp7', 'sp8'], url: '/images/linker.png' },
+  { id: '02', name: 'linker', sprintList: ['sp7', 'sp8'], url: '/images/linker.png' },
 ];
 
 export const dummySprint: SprintElementType[] = [

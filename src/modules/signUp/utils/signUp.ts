@@ -15,8 +15,8 @@ export async function signUp(signUpRequest: SignUpRequest) {
   const { username, password, nickname, email, phoneNumber } = signUpRequest;
   try {
     await signUpAPI(username, password, nickname, email, phoneNumber);
-    const { userToken } = await signInAPI(username, password);
-    tokenStore.save(userToken);
+    const { jwttoken } = await signInAPI(username, password);
+    tokenStore.save(jwttoken);
   } catch (error) {
     console.log(error.message);
   }

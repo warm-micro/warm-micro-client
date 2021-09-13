@@ -4,8 +4,8 @@ import { signInAPI } from './signIn.api';
 
 export async function signIn(username: string, password: string) {
   try {
-    const { userToken } = await signInAPI(username, password);
-    tokenStore.save(userToken);
+    const { jwttoken } = await signInAPI(username, password);
+    tokenStore.save(jwttoken);
     Router.push('/myPage');
   } catch (error) {
     console.log(error.message);
