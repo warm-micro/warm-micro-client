@@ -30,16 +30,41 @@ import { wrapper } from '@/app/store';
 // }
 
 // export default withRedux(createStore(withReduxSaga(MyApp));
-class WrappedApp extends App<AppInitialProps> {
-  static async getInitialProps({ Component, ctx }: AppContext) {
-    const pageProps = Component.getInitialProps
-      ? await Component.getInitialProps(ctx)
-      : {};
+// class WrappedApp extends App<AppInitialProps> {
+//   static async getInitialProps({ Component, ctx }: AppContext) {
+//     const pageProps = Component.getInitialProps
+//       ? await Component.getInitialProps(ctx)
+//       : {};
 
-    return { pageProps };
+//     return { pageProps };
+//   }
+
+//   public render() {
+//     const { Component, pageProps, router } = this.props;
+//     if (router.pathname.startsWith('/workspace/')) {
+//       return (
+//         <Layout>
+//           <Component {...pageProps} />
+//         </Layout>
+//       );
+//     }
+
+//     return <Component {...pageProps} />;
+//   }
+// }
+
+// export default wrapper.withRedux(WrappedApp);
+class MyApp extends App {
+  static async getInitialProps({ Component, ctx }: AppContext) {
+    return {
+      pageProps: {
+        // Call page-level getInitialProps
+        ...(Component.getInitialProps ? await Component.getInitialProps(ctx) : {}),
+      },
+    };
   }
 
-  public render() {
+  render() {
     const { Component, pageProps, router } = this.props;
     if (router.pathname.startsWith('/workspace/')) {
       return (
@@ -53,4 +78,4 @@ class WrappedApp extends App<AppInitialProps> {
   }
 }
 
-export default wrapper.withRedux(WrappedApp);
+export default wrapper.withRedux(MyApp);

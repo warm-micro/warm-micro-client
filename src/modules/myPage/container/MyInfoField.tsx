@@ -1,24 +1,33 @@
 import { MemberType } from '@/common/types/member.type';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import MyInfoItem from '../component/MyInfoItem';
+import { useSelector } from 'react-redux';
+import { selectMyInfo } from '../utils/myInfo.slice';
 
 interface MyInfoFieldProps {
-  member: MemberType;
   onChangeInfoName: (newName: string) => void;
 }
 
-const MyInfoField = ({ member, onChangeInfoName }: MyInfoFieldProps) => {
-  const [id, setId] = useState(member.id);
-  const [name, setName] = useState(member.name);
-  const [phoneNumber, setPhoneNumber] = useState(member.phoneNumber);
-  const [email, setEmail] = useState(member.email);
+const MyInfoField = ({ onChangeInfoName }: MyInfoFieldProps) => {
+  const { myInfo } = useSelector(selectMyInfo);
+  const [id, setId] = useState(myInfo.userId);
+  const [name, setName] = useState(myInfo.name);
+  const [phoneNumber, setPhoneNumber] = useState(myInfo.phoneNumber);
+  const [email, setEmail] = useState(myInfo.email);
   const [isEditMode, setIsEditMode] = useState({
     id: false,
     name: false,
     email: false,
     phoneNumber: false,
   });
+  
+  useEffect(() => {
+    setId(myInfo.userId);
+    setName(myInfo.name);
+    setPhoneNumber(myInfo.phoneNumber);
+    setEmail(myInfo.email);
+  }, [myInfo]);;
 
   const onChangeId = (e: React.ChangeEvent<HTMLInputElement>) => {
     setId(e.target.value);

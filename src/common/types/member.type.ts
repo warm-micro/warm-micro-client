@@ -1,5 +1,6 @@
 export interface MemberType {
-  id: string;
+  id: number;
+  userId: string;
   name: string;
   email: string;
   phoneNumber: string;

@@ -5,19 +5,21 @@ import { MemberType } from '@/common/types/member.type';
 import { Members } from '@/common/utils/dummy';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
+import { selectMyInfo } from '../utils/myInfo.slice';
 import MyInfoField from './MyInfoField';
 
 interface MyInfoProps {
-  member: MemberType;
   onChangeInfoName: (newName: string) => void;
 }
 
-const MyInfo = ({ member, onChangeInfoName }: MyInfoProps) => {
+const MyInfo = ({ onChangeInfoName }: MyInfoProps) => {
+  const { myInfo } = useSelector(selectMyInfo);
   return (
     <Container>
-      <MyImg url={member.url} />
-      <MyName>{member.name}</MyName>
-      <MyInfoField member={member} onChangeInfoName={onChangeInfoName} />
+      <MyImg url={myInfo.url} />
+      <MyName>{myInfo.name}</MyName>
+      <MyInfoField onChangeInfoName={onChangeInfoName} />
     </Container>
   );
 };

@@ -11,12 +11,14 @@ interface TasksProps {
 
 const Tasks = ({ member }: TasksProps) => {
   const tasks = Chats.filter(
-    (chat) => !!chat.pTag?.find((pTag) => pTag.personId === member.id)
+    (chat) => !!chat.pTag?.find((pTag) => pTag.personId === member.userId)
   ).filter((task) => task !== undefined);
   console.log(tasks);
   return (
     <Container>
-      <MyInfoTitle>Tasks</MyInfoTitle>
+      <MyInfo>
+        <MyInfoTitle>Tasks</MyInfoTitle>
+      </MyInfo>
       <Content>
         <TableTitle>
           <div className="workspace">workspace</div>
@@ -73,6 +75,12 @@ const TableTitle = styled.div`
   .tags {
     flex: 1.5 1.5;
   }
+`;
+const MyInfo = styled.div`
+  display: flex;
+  align-items: center;
+  min-height: 50px;
+  height: 50px;
 `;
 
 const TableContent = styled.div`

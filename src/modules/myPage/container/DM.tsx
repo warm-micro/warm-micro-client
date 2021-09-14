@@ -5,7 +5,9 @@ import { MyInfoTitle } from '../../../common/component/textStyle/MyInfoTitle';
 const DM = () => {
   return (
     <Container>
-      <MyInfoTitle>Direct Messages</MyInfoTitle>
+      <MyInfo>
+        <MyInfoTitle>Direct Messages</MyInfoTitle>
+      </MyInfo>
       <Content></Content>
     </Container>
   );
@@ -13,6 +15,12 @@ const DM = () => {
 
 export default DM;
 
+const MyInfo = styled.div`
+  display: flex;
+  align-items: center;
+  min-height: 50px;
+  height: 50px;
+`;
 const Container = styled.div`
   display: flex;
   flex-direction: column;

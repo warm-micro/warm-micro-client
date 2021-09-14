@@ -1,5 +1,5 @@
 import myInfoReducer from '@/modules/myPage/utils/myInfo.slice';
-import { combineReducers, createSlice } from '@reduxjs/toolkit';
+import { combineReducers } from '@reduxjs/toolkit';
 
 const rootReducer = combineReducers({
   myInfoReducer: myInfoReducer.reducer,
