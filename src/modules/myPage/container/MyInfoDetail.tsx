@@ -5,17 +5,19 @@ import styled from 'styled-components';
 import DM from './DM';
 import Tasks from './Tasks';
 import Workspaces from './Workspaces';
+import { useSelector } from 'react-redux';
+import { selectMyInfo } from '../utils/myInfo.slice';
 
-interface MyInfoDetailProps {
-  member: MemberType;
-}
 
-const MyInfoDetail = ({ member }: MyInfoDetailProps) => {
+
+
+const MyInfoDetail = () => {
+  const { myInfo } = useSelector(selectMyInfo);
   return (
     <Container>
-      <MyName>Hi, {member.name}</MyName>
+      <MyName>Hi, {myInfo.name}</MyName>
       <DetailContainer>
-        <Tasks member={member} />
+        <Tasks member={myInfo} />
         <Content>
           <Workspaces />
           <DM />

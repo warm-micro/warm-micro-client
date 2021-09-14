@@ -11,7 +11,7 @@ interface AuthorProps {
 }
 
 const Author = ({ authorId, time }: AuthorProps) => {
-  const authorInfo = Members.find((member) => member.id === authorId);
+  const authorInfo = Members.find((member) => member.userId === authorId);
   return (
     <Container>
       <MemberImg url={authorInfo?.url} />

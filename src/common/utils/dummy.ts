@@ -136,7 +136,8 @@ export const MemberWorkspace = {
 
 export const Members: MemberType[] = [
   {
-    id: '001',
+    id: 0,
+    userId: '001',
     name: 'Hyewon Kwak',
     url: '/images/hyewon.jpg',
     email: 'khw121699@gmail.com',
@@ -144,7 +145,8 @@ export const Members: MemberType[] = [
     active: true,
   },
   {
-    id: '002',
+    id: 1,
+    userId: '002',
     name: 'Jinho Jeong',
     url: '/images/jinho.png',
     email: 'hahoh0013@gmail.com',
@@ -152,7 +154,8 @@ export const Members: MemberType[] = [
     active: false,
   },
   {
-    id: '003',
+    id: 2,
+    userId: '003',
     name: 'Ricky Eom',
     url: '/images/eom.png',
     email: 'jungbin0329@gmail.com',

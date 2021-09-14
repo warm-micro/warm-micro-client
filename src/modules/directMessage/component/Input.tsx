@@ -6,7 +6,7 @@ import { SendBtn } from '@/common/component/button/SendBtn';
 
 const Input = () => {
   const router = useRouter();
-  const member = Members.filter((member) => member.id === router.query.memberId)[0];
+  const member = Members.filter((member) => member.userId === router.query.memberId)[0];
   return (
     <Container>
       <InputItem placeholder={`leave message to ${member?.name}...`} />

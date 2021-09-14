@@ -12,23 +12,19 @@ import myInfoReducer, { selectMyInfo } from './utils/myInfo.slice';
 
 const MyPage = () => {
   const dispatch = useDispatch();
-  const myInfo = useSelector(selectMyInfo);
   // const [member, setMember] = useState<MemberType>({ ...Members[0] });
   const onChangeInfoName = (newName: string) => {
     // setMember({ ...member, name: newName });
   };
 
   useEffect(() => {
-    // if(myInfo.myInfo.id === ""){
-      dispatch(myInfoReducer.actions.fetchMyInfoStart());
-    // }
-    console.group(myInfo);
+    dispatch(myInfoReducer.actions.fetchMyInfoStart());
   }, []);
   return (
     <Container>
       <Content>
-        <MyInfo member={myInfo.myInfo} onChangeInfoName={onChangeInfoName} />
-        <MyInfoDetail member={myInfo.myInfo} />
+        <MyInfo onChangeInfoName={onChangeInfoName} />
+        <MyInfoDetail />
       </Content>
     </Container>
   );

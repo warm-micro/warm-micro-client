@@ -1,6 +1,6 @@
 import { RootState } from '@/app/rootReducer';
 import { MemberType } from '@/common/types/member.type';
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { AnyAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export type myInfoType = {
   loading: boolean;
@@ -14,7 +14,8 @@ const myInfoReducer = createSlice({
     loading: false,
     error: undefined,
     myInfo: {
-      id: '',
+      id: 0,
+      userId: '',
       name: '',
       email: '',
       url: '',
@@ -28,7 +29,7 @@ const myInfoReducer = createSlice({
       state.error = undefined;
     },
     fetchMyInfoSuccess: (state, action: PayloadAction<MemberType>) => {
-      state.myInfo = action.payload;
+      state.myInfo = { ...action.payload };
       state.loading = false;
       state.error = undefined;
     },
