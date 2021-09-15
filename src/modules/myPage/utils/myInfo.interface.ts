@@ -9,15 +9,4 @@ export interface UserInfoResponse {
   };
 }
 
-export interface WorkspaceListResponse {
-  message: string;
-  body: {
-    ID: number;
-    CreatedAt: string;
-    UpdatedAt: string;
-    DeletedAt: null | string;
-    Name: string;
-    Members: null | number[];
-  }[];
-}
 

@@ -3,29 +3,29 @@ import { tokenStore } from '@/common/utils/tokenStore';
 import Router from 'next/router';
 import { takeEvery, all, put } from 'redux-saga/effects';
 import { call } from 'typed-redux-saga';
-import { fetchUserInfoAPI } from './myInfo.api';
+import { fetchMyInfoAPI } from './myInfo.api';
 import myInfoReducer from './myInfo.slice';
 import myInfoSlice from './myInfo.slice';
 
 function* fetchMyInfoSaga() {
   try {
     if (tokenStore.get()) {
-      const { body } = yield * call(fetchUserInfoAPI);
+      const myInfoRes = yield * call(fetchMyInfoAPI);
       const myInfo: MemberType = {
-        id: body.id,
-        userId: body.username,
-        name: body.nickname,
-        email: body.email,
-        phoneNumber: body.phoneNumber,
+        id: myInfoRes.body.id,
+        userId: myInfoRes.body.username,
+        name: myInfoRes.body.nickname,
+        email: myInfoRes.body.email,
+        phoneNumber: myInfoRes.body.phoneNumber,
         url:
-          body.nickname == 'Hyewon Kwak'
+          myInfoRes.body.nickname == 'Hyewon Kwak'
             ? '/images/hyewon.jpg'
-            : body.nickname == 'Jinho Jeong'
+            : myInfoRes.body.nickname == 'Jinho Jeong'
             ? '/images/jinho.png'
             : '/images/eom.png',
         active: true,
       };
-        yield put(myInfoReducer.actions.fetchMyInfoSuccess(myInfo));
+      yield put(myInfoReducer.actions.fetchMyInfoSuccess(myInfo));
     } else {
       yield call(Router.push, '/login');
     }

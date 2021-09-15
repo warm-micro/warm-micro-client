@@ -4,19 +4,34 @@ import IconBtn from '@/common/component/button/IconBtn';
 import Modal from '@/common/component/modal/Modal';
 import { dummy } from '@/common/utils/dummy';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { MyInfoTitle } from '../../../common/component/textStyle/MyInfoTitle';
 import WorkspaceItem from '../component/WorkspaceItem';
 
 const Workspaces = () => {
   const [visible, setVisible] = useState(false);
+  const [newName, setNewName] = useState('');
+  const dispatch = useDispatch();
+  const onCancel = () => {
+    setVisible(false);
+    setNewName('');
+  };
+  const onSubmit = () => {};
   return (
     <Container>
       <Modal visible={visible}>
         <ModalContainer>
           <ModalTitle>Create New Workspace</ModalTitle>
-          <Input placeholder="Enter new workspace name..." />
-          <ConfirmBtn>CONFIRM</ConfirmBtn>
+          <Input
+            value={newName}
+            onChange={(e) => setNewName(e.target.value)}
+            placeholder="Enter new workspace name..."
+          />
+          <ButtonContainer>
+            <CancelBtn onClick={onCancel}>CANCEL</CancelBtn>
+            <ConfirmBtn>CONFIRM</ConfirmBtn>
+          </ButtonContainer>
         </ModalContainer>
       </Modal>
       <MyInfo>
@@ -31,9 +46,9 @@ const Workspaces = () => {
         />
       </MyInfo>
       <Content>
-        {dummy.map((workspace) => (
+        {/* {dummy.map((workspace) => (
           <WorkspaceItem key={workspace.id} workspace={workspace} />
-        ))}
+        ))} */}
       </Content>
     </Container>
   );
@@ -46,11 +61,12 @@ const Container = styled.div`
   flex-direction: column;
   width: 100%;
   margin-right: 15px;
-`;
+  `;
 
 const ModalContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   flex: 1;
   padding: 30px;
 `;
@@ -60,12 +76,18 @@ const ModalTitle = styled.div`
   font-size: 28px;
   color: #000000;
 `;
-
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
 const ConfirmBtn = styled(AccountPurpleBtn)`
-    width: 150px;
+  width: 150px;
+  font-weight: bold;
 `;
 const CancelBtn = styled(AccountWhiteBtn)`
-    width: 150px;
+  width: 150px;
+  font-weight: bold;
+  margin-right: 20px;
 `;
 
 const MyInfo = styled.div`
@@ -82,7 +104,7 @@ const Content = styled.div`
   box-shadow: 4px 8px 20px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   padding: 25px;
-  flex: 1;
+  /* flex: 1; */
   overflow-y: scroll;
 `;
 
@@ -102,5 +124,4 @@ const Input = styled.input`
   border: 0.5px solid #552aff;
   border-radius: 10px;
   padding: 0 12px;
-  margin-top: 10px;
 `;

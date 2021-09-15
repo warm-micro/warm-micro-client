@@ -1,6 +1,10 @@
+import { MemberType } from "./member.type";
+
 export interface WorkspaceType {
-  id: string;
+  id: number;
   name: string;
-  sprintList: string[];
+  sprintList: string[] | null;
   url: string;
+  members: MemberType[] | null;
+  code : string;
 }

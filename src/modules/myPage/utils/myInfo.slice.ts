@@ -21,6 +21,7 @@ const myInfoReducer = createSlice({
       url: '',
       phoneNumber: '',
       active: false,
+      workspaceList: [],
     },
   } as myInfoType,
   reducers: {

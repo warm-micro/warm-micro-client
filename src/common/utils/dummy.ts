@@ -50,14 +50,51 @@ export const dummyMessage: DirectMessageType[] = [
  
 ];
 
+
+export const Members: MemberType[] = [
+  {
+    id: 0,
+    userId: '001',
+    name: 'Hyewon Kwak',
+    url: '/images/hyewon.jpg',
+    email: 'khw121699@gmail.com',
+    phoneNumber: '010-2703-8658',
+    active: true,
+  },
+  {
+    id: 1,
+    userId: '002',
+    name: 'Jinho Jeong',
+    url: '/images/jinho.png',
+    email: 'hahoh0013@gmail.com',
+    phoneNumber: '010-2703-8658',
+    active: false,
+  },
+  {
+    id: 2,
+    userId: '003',
+    name: 'Ricky Eom',
+    url: '/images/eom.png',
+    email: 'jungbin0329@gmail.com',
+    phoneNumber: '010-2703-8658',
+    active: false,
+  },
+];
 export const dummy: WorkspaceType[] = [
   {
-    id: '01',
+    id: 0,
     name: 'warm-micro',
     sprintList: ['sp1', 'sp2', 'sp3', 'sp4', 'sp5', 'sp6'],
     url: '/images/warm.png',
+    members: Members,
+    code: '01',
   },
-  { id: '02', name: 'linker', sprintList: ['sp7', 'sp8'], url: '/images/linker.png' },
+  { id: 1, 
+    name: 'linker', 
+    sprintList: ['sp7', 'sp8'], 
+    url: '/images/linker.png',
+    members: Members, 
+    code : '02' },
 ];
 
 export const dummySprint: SprintElementType[] = [
@@ -134,35 +171,6 @@ export const MemberWorkspace = {
 
 
 
-export const Members: MemberType[] = [
-  {
-    id: 0,
-    userId: '001',
-    name: 'Hyewon Kwak',
-    url: '/images/hyewon.jpg',
-    email: 'khw121699@gmail.com',
-    phoneNumber: '010-2703-8658',
-    active: true,
-  },
-  {
-    id: 1,
-    userId: '002',
-    name: 'Jinho Jeong',
-    url: '/images/jinho.png',
-    email: 'hahoh0013@gmail.com',
-    phoneNumber: '010-2703-8658',
-    active: false,
-  },
-  {
-    id: 2,
-    userId: '003',
-    name: 'Ricky Eom',
-    url: '/images/eom.png',
-    email: 'jungbin0329@gmail.com',
-    phoneNumber: '010-2703-8658',
-    active: false,
-  },
-];
 
 export const Chats: ChatType[] = [
   {

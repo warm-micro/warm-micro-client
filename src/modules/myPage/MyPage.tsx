@@ -5,6 +5,7 @@ import { NextPage, NextPageContext } from 'next';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import workspaceReducer from '../workspace/utils/workspace.slice';
 import MyInfo from './container/MyInfo';
 import MyInfoDetail from './container/MyInfoDetail';
 import myInfoReducer, { selectMyInfo } from './utils/myInfo.slice';
@@ -19,6 +20,7 @@ const MyPage = () => {
 
   useEffect(() => {
     dispatch(myInfoReducer.actions.fetchMyInfoStart());
+    dispatch(workspaceReducer.actions.fetchWorkspaceListStart());
   }, []);
   return (
     <Container>
