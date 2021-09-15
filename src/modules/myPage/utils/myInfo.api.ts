@@ -1,14 +1,14 @@
 import makeRequest from '@/common/utils/makeRequest';
-import { UserInfoResponse, WorkspaceListResponse } from './myInfo.interface';
+import { UserInfoResponse } from './myInfo.interface';
 
-export const fetchUserInfoAPI = () =>
+export const fetchMyInfoAPI = () =>
   makeRequest<UserInfoResponse>({
     method: 'get',
     url: 'user/info',
   });
-export const fetchWorkspaceListAPI = (userId: number) =>
-  makeRequest<WorkspaceListResponse>({
+export const fetchUserInfoAPI = (id:  number) =>
+  makeRequest<UserInfoResponse>({
     method: 'get',
-    url: 'workspace',
-    query: { userId: userId },
+    url: `user/info/${id}`,
   });
+

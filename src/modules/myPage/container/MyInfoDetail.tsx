@@ -34,7 +34,6 @@ const Container = styled.div`
   flex-direction: column;
   color: #ffffff;
   flex: 1;
-  /* width: 100%; */
   padding: 55px 80px;
 `;
 
