@@ -7,3 +7,5 @@ export interface MemberType {
   url: string;
   active: boolean;
 }
+
+

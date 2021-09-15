@@ -6,6 +6,9 @@ export async function signIn(username: string, password: string) {
   try {
     const { jwttoken } = await signInAPI(username, password);
     tokenStore.save(jwttoken);
+    if (tokenStore.get()) {
+      console.log('tokenSaved!');
+    }
     Router.push('/myPage');
   } catch (error) {
     console.log(error.message);
