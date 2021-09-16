@@ -3,10 +3,11 @@ import { WorkspaceType } from '@/common/types/workspace.type';
 import { tokenStore } from '@/common/utils/tokenStore';
 import { fetchUserInfoAPI } from '@/modules/myPage/utils/myInfo.api';
 import { selectMyInfo } from '@/modules/myPage/utils/myInfo.slice';
+import { PayloadAction } from '@reduxjs/toolkit';
 import Router from 'next/router';
 import { takeEvery, all, put } from 'redux-saga/effects';
 import { call, select, takeLatest } from 'typed-redux-saga';
-import { fetchWorkspaceListAPI } from './workspace.api';
+import { createWorkspaceAPI, fetchWorkspaceListAPI } from './workspace.api';
 import workspaceReducer from './workspace.slice';
 
 function* fetchWorkspaceListSaga() {
@@ -33,8 +34,18 @@ function* fetchWorkspaceListSaga() {
     yield put(workspaceReducer.actions.fetchWorkspaceListError());
   }
 }
-function* createWorkspaceSaga() {
+function* createWorkspaceSaga(action: PayloadAction<string>) {
   try {
+    const { body } = yield * call(createWorkspaceAPI,  action.payload);
+    const newWorkspace = {
+      id: body.ID,
+      name: body.Name,
+      sprintList: [],
+      url: body.Name == 'warm-micro' ? '/images/warm.png' : '/images/linker.png',
+      members: [],
+      code: body.Code,
+    };
+    yield put(workspaceReducer.actions.createWorkspaceSuccess(newWorkspace));
   } catch (error) {
     yield put(workspaceReducer.actions.createWorkspaceError());
   }
@@ -45,6 +56,6 @@ export function* watchWorkspace() {
       workspaceReducer.actions.fetchWorkspaceListStart.type,
       fetchWorkspaceListSaga
     ),
-    takeLatest(workspaceReducer.actions.createWorkspaceStart),
+    takeLatest(workspaceReducer.actions.createWorkspaceStart.type, createWorkspaceSaga),
   ]);
 }

@@ -28,7 +28,7 @@ const workspaceReducer = createSlice({
     fetchWorkspaceListError: (state) => {
       state.error = 'fetch workspacelist error';
     },
-    createWorkspaceStart: (state) => {
+    createWorkspaceStart: (state, action: PayloadAction<string>) => {
       state.loading = true;
       state.error = undefined;
     },
