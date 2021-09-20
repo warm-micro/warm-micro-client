@@ -98,14 +98,24 @@ export const dummy: WorkspaceType[] = [
 ];
 
 export const dummySprint: SprintElementType[] = [
-  { id: 'sp1', order: 0, title: '스프린트1', status: SprintStatusEnum.FINISH },
-  { id: 'sp2', order: 1, title: '스프린트2', status: SprintStatusEnum.FINISH },
-  { id: 'sp3', order: 2, title: '사용자 기능 구현', status: SprintStatusEnum.CURRENT },
-  { id: 'sp4', order: 3, title: '채팅 기능 구현', status: SprintStatusEnum.READY },
-  { id: 'sp5', order: 4, title: '게시판 기능 구현', status: SprintStatusEnum.READY },
-  { id: 'sp6', order: 5, title: '검색기능 구현', status: SprintStatusEnum.READY },
-  { id: 'sp7', order: 0, title: '유니티 UI', status: SprintStatusEnum.READY },
-  { id: 'sp8', order: 1, title: '포톤 서버 연동', status: SprintStatusEnum.READY },
+  { id: 'sp1', title: '스프린트1', status: SprintStatusEnum.FINISH, workspaceId: 5 },
+  { id: 'sp2', title: '스프린트2', status: SprintStatusEnum.FINISH, workspaceId: 5 },
+  {
+    id: 'sp3',
+    title: '사용자 기능 구현',
+    status: SprintStatusEnum.CURRENT,
+    workspaceId: 5,
+  },
+  { id: 'sp4', title: '채팅 기능 구현', status: SprintStatusEnum.READY, workspaceId: 5 },
+  {
+    id: 'sp5',
+    title: '게시판 기능 구현',
+    status: SprintStatusEnum.READY,
+    workspaceId: 5,
+  },
+  { id: 'sp6', title: '검색기능 구현', status: SprintStatusEnum.READY, workspaceId: 5 },
+  { id: 'sp7', title: '유니티 UI', status: SprintStatusEnum.READY, workspaceId: 5 },
+  { id: 'sp8', title: '포톤 서버 연동', status: SprintStatusEnum.READY, workspaceId: 5 },
 ];
 
 export const dummySprintChat = [

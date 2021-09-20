@@ -1,8 +1,10 @@
 import { SprintStatusEnum } from './enums/SprintStatusEnum';
 
 export interface SprintElementType {
-  id: string;
+  id: number;
   order: number;
   title: string;
   status: SprintStatusEnum;
+  workspaceId: number;
 };
+

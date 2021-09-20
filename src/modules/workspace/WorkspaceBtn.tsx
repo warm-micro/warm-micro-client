@@ -6,21 +6,22 @@ import React from 'react';
 import styled from 'styled-components';
 
 const WorkspaceBtn = () => {
-   const router = useRouter();
-   const workspace = dummy.find((workspace) => workspace.name === router.query.workspace);
-   return (
-     <Container
-       onClick={() => {
-         if (workspace) {
-           router.replace(`/workspace/${workspace.name}`);
-         }
-       }}
-     >
-       <WorkspaceImg url={workspace?.url} />
-       <Title>{workspace?.name}</Title>
-     </Container>
-   );
-};
+  const router = useRouter();
+  const workspace = router.query.workspace;
+  //  const workspace = dummy.find((workspace) => workspace.name === router.query.workspace);
+  return (
+    <Container
+      onClick={() => {
+        if (workspace) {
+          router.replace(`/workspace/${workspace}`);
+        }
+      }}
+    >
+      <WorkspaceImg name={workspace} />
+      <Title>{workspace}</Title>
+    </Container>
+  );
+};;;;
 
 export default WorkspaceBtn;
 
@@ -36,7 +37,7 @@ const Container = styled.div`
   box-shadow: 4px 8px 10px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
   margin: 25px 20px;
-  img {
+  .images {
     margin: 0 15px;
   }
 `;

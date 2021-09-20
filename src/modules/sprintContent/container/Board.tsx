@@ -1,8 +1,11 @@
+import { RootState } from '@/app/rootReducer';
 import { SprintTitle } from '@/common/component/textStyle/SprintTitle';
 import { ViewEnum } from '@/common/types/enums/ViewEnum';
 import { dummySprint, dummySprintChat } from '@/common/utils/dummy';
+import { selectSprintById } from '@/modules/sprintList/utils/sprint.slice';
 import Router, { useRouter } from 'next/dist/client/router';
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import Chat from '../components/Chat';
 import Filter from '../components/Filter';
@@ -21,8 +24,9 @@ const Board = ({ setShowThread, onShowThreads }: BoardProps) => {
   // const [timeSplit, setTimeSplit] = useState(new Date());
   const [filter, setfilter] = useState(FilterEnum.PROGRESS);
   const router = useRouter();
-  const sprintId = router.query.sprint;
-  const sprint = dummySprint.find((sp) => sp.id === sprintId);
+  const sprintId = router.query.sprint as string;
+  const sprint = useSelector((state:  RootState) => selectSprintById(state, parseInt(sprintId)));
+  // const sprint = dummySprint.find((sp) => sp.id === sprintId);
   const chatIdList = dummySprintChat.find(
     (spChat) => spChat.sprintId === sprintId
   )?.chats;
@@ -60,7 +64,7 @@ const Board = ({ setShowThread, onShowThreads }: BoardProps) => {
       )}
     </Container>
   );
-};
+};;
 
 export default Board;
 

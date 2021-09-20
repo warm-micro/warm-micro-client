@@ -10,7 +10,7 @@ interface BtnProps {
 
 const IconBtn = ({ url, width, height, onClick }: BtnProps) => {
   return (
-    <Container height={height} width={width} onClick={onClick}>
+    <Container className="button" height={height} width={width} onClick={onClick}>
       <img src={url} />
     </Container>
   );

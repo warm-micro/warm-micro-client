@@ -6,6 +6,7 @@ interface WorkspaceListType {
   loading: boolean;
   error?: string;
   workspaceList: WorkspaceType[];
+  currentWorkspaceId: number | null;
 }
 
 const workspaceReducer = createSlice({
@@ -14,6 +15,7 @@ const workspaceReducer = createSlice({
     loading: false,
     error: undefined,
     workspaceList: [],
+    currentWorkspaceId: null,
   } as WorkspaceListType,
   reducers: {
     fetchWorkspaceListStart: (state) => {
@@ -21,14 +23,14 @@ const workspaceReducer = createSlice({
       state.error = undefined;
     },
     fetchWorkspaceListSuccess: (state, action: PayloadAction<WorkspaceType[]>) => {
-      state.workspaceList = { ...action.payload };
+      state.workspaceList = [...action.payload];
       state.loading = false;
       state.error = undefined;
     },
     fetchWorkspaceListError: (state) => {
       state.error = 'fetch workspacelist error';
     },
-    createWorkspaceStart: (state) => {
+    createWorkspaceStart: (state, action: PayloadAction<string>) => {
       state.loading = true;
       state.error = undefined;
     },
@@ -38,9 +40,19 @@ const workspaceReducer = createSlice({
     createWorkspaceError: (state) => {
       state.error = 'create workspace error';
     },
+    setCurrentWorkspace: (state, action: PayloadAction<number>) => {
+      state.currentWorkspaceId = action.payload;
+    },
   },
 });
 
 export default workspaceReducer;
 
-export const selectMyInfo = (state: RootState) => state.workspaceReducer;
+export const selectWorkspaceList = (state: RootState) =>
+  state.workspaceReducer.workspaceList;
+export const selectCurrentWorkspace = (state: RootState) =>
+  state.workspaceReducer.workspaceList.find(
+    (workspace) => workspace.id === state.workspaceReducer.currentWorkspaceId
+  );
+export const selectCurrentWorkspaceId = (state: RootState) =>
+  state.workspaceReducer.currentWorkspaceId;
