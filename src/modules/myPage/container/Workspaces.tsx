@@ -3,8 +3,11 @@ import { AccountWhiteBtn } from '@/common/component/button/AccountWhiteBtn';
 import IconBtn from '@/common/component/button/IconBtn';
 import Modal from '@/common/component/modal/Modal';
 import { dummy } from '@/common/utils/dummy';
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import workspaceReducer, {
+  selectWorkspaceList,
+} from '@/modules/workspace/utils/workspace.slice';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { MyInfoTitle } from '../../../common/component/textStyle/MyInfoTitle';
 import WorkspaceItem from '../component/WorkspaceItem';
@@ -12,12 +15,19 @@ import WorkspaceItem from '../component/WorkspaceItem';
 const Workspaces = () => {
   const [visible, setVisible] = useState(false);
   const [newName, setNewName] = useState('');
+  const workspaces = useSelector(selectWorkspaceList);
+  console.log(workspaces);
   const dispatch = useDispatch();
   const onCancel = () => {
     setVisible(false);
     setNewName('');
   };
-  const onSubmit = () => {};
+
+  const onSubmit = () => {
+    dispatch(workspaceReducer.actions.createWorkspaceStart(newName));
+    setVisible(false);
+    setNewName('');
+  };
   return (
     <Container>
       <Modal visible={visible}>
@@ -30,7 +40,7 @@ const Workspaces = () => {
           />
           <ButtonContainer>
             <CancelBtn onClick={onCancel}>CANCEL</CancelBtn>
-            <ConfirmBtn>CONFIRM</ConfirmBtn>
+            <ConfirmBtn onClick={onSubmit}>CONFIRM</ConfirmBtn>
           </ButtonContainer>
         </ModalContainer>
       </Modal>
@@ -46,13 +56,13 @@ const Workspaces = () => {
         />
       </MyInfo>
       <Content>
-        {/* {dummy.map((workspace) => (
+        {workspaces.map((workspace) => (
           <WorkspaceItem key={workspace.id} workspace={workspace} />
-        ))} */}
+        ))}
       </Content>
     </Container>
   );
-};
+};;
 
 export default Workspaces;
 

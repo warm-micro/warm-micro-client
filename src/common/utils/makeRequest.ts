@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { tokenStore } from './tokenStore';
 
-axios.defaults.baseURL = 'http://13.124.188.6/';
+axios.defaults.baseURL = 'http://3.36.122.92/';
 export interface ApiOption {
   url: string;
   method: 'get' | 'post' | 'put' | 'delete';

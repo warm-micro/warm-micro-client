@@ -5,9 +5,11 @@ import { SprintStatusEnum } from '@/common/types/enums/SprintStatusEnum';
 import { useRouter } from 'next/dist/client/router';
 import { route } from 'next/dist/next-server/server/router';
 
+interface SprintElementProps {
+  sprint: SprintElementType;
+}
 
-const SprintElement = ({ ...sprint }: SprintElementType) => {
-
+const SprintElement = ({ sprint }: SprintElementProps) => {
   const router = useRouter();
   return (
     <Container

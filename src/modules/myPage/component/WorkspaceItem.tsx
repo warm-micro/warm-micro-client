@@ -5,20 +5,24 @@ import Router from 'next/dist/client/router';
 import styled from 'styled-components';
 import { WorkspaceType } from '@/common/types/workspace.type';
 import IconBtn from '@/common/component/button/IconBtn';
+import { useDispatch } from 'react-redux';
+import workspaceReducer from '@/modules/workspace/utils/workspace.slice';
 
 interface WorkSpaceItemProps {
   workspace: WorkspaceType;
 }
 
 const WorkspaceItem = ({ workspace }: WorkSpaceItemProps) => {
+  const dispatch = useDispatch();
   return (
     <Container
       onClick={() => {
         Router.push(`/workspace/[workspace]`, `/workspace/${workspace.name}`);
+        dispatch(workspaceReducer.actions.setCurrentWorkspace(workspace.id));
       }}
     >
       <Content>
-        <WorkspaceImg url={workspace?.url} />
+        <WorkspaceImg url={workspace?.url} name={workspace.name} />
         <Title>{workspace?.name}</Title>
       </Content>
       <IconBtn
@@ -45,10 +49,10 @@ const Container = styled.div`
   box-shadow: 4px 8px 10px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
   margin-bottom: 25px;
-  img {
+  .images {
     margin: 0 15px;
   }
-  padding: 0 5px;  
+  padding: 0 5px;
 `;
 
 const Content = styled.div`

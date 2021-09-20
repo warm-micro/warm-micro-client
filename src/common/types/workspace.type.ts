@@ -4,7 +4,7 @@ export interface WorkspaceType {
   id: number;
   name: string;
   sprintList: string[] | null;
-  url: string;
+  url: string | null;
   members: MemberType[] | null;
-  code : string;
+  code: string;
 }
