@@ -32,8 +32,8 @@ const Card = ({ id, card, index }: CardProps) => {
           <CardContent>{card.content}</CardContent>
           <PersonContainer>
             {card.pTag?.map((pTag) => {
-              const url = Members.filter((member) => member.id === pTag.personId)[0].url;
-              return <PersonTagImg key={pTag.id} url={url} />;
+              // const url = Members.filter((member) => member.id == pTag.personId)[0].url;
+              return <PersonTagImg key={pTag.id} url={'/images/warm.png'} />;
             })}
           </PersonContainer>
         </Container>

@@ -13,19 +13,18 @@ import workspaceReducer from './workspace.slice';
 function* fetchWorkspaceListSaga() {
   try {
     if (tokenStore.get()) {
-      const myInfo = yield* select(selectMyInfo);
-      const workspaceRes = yield* call(fetchWorkspaceListAPI, myInfo.myInfo.id);
+      const myInfo = yield * select(selectMyInfo);
+      const workspaceRes = yield * call(fetchWorkspaceListAPI, myInfo.myInfo.id);
       const workspaceList: WorkspaceType[] = workspaceRes.body.map((workspace) => {
         return {
           id: workspace.ID,
           name: workspace.Name,
           sprintList: [],
-          url: workspace.Name == 'warm-micro' ? '/images/warm.png' : '/images/linker.png',
+          url: workspace.Name == 'warm-micro' ? '/images/warm.png' : null,
           members: [],
           code: workspace.Code,
         };
       });
-      console.log(workspaceList);
       yield put(workspaceReducer.actions.fetchWorkspaceListSuccess(workspaceList));
     } else {
       yield call(Router.push, '/login');
@@ -41,7 +40,7 @@ function* createWorkspaceSaga(action: PayloadAction<string>) {
       id: body.ID,
       name: body.Name,
       sprintList: [],
-      url: body.Name == 'warm-micro' ? '/images/warm.png' : '/images/linker.png',
+      url: body.Name == 'warm-micro' ? '/images/warm.png' : null,
       members: [],
       code: body.Code,
     };
