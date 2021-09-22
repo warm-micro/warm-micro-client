@@ -11,12 +11,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled, { css, keyframes } from 'styled-components';
 import FinishedSprintListToggle from './components/FinishedSprintListToggle';
 import SprintElement from './components/SprintElement';
-import sprintReducer, { selectSprintList } from './utils/sprint.slice';
+import sprintReducer, {
+  selectCurrentSprint,
+  selectSprintList,
+} from './utils/sprint.slice';
 import { ToggleProps } from './utils/toggleProps.type';
 
 const SprintList = () => {
   const [visible, setVisible] = useState(false);
   const [toggled, setToggled] = useState(false);
+  const currentSprint = useSelector(selectCurrentSprint);
+  const [viewSprintId, setViewSprintId] = useState(currentSprint?.id);
   const [newName, setNewName] = useState('');
   const { query } = useRouter();
   const sprintList = useSelector(selectSprintList);
@@ -70,7 +75,12 @@ const SprintList = () => {
         {sprintList.map(
           (sprint) =>
             sprint.status !== SprintStatusEnum.FINISH && (
-              <SprintElement key={sprint.id} sprint={sprint} />
+              <SprintElement
+                viewSprintId={viewSprintId}
+                setViewSprintId={setViewSprintId}
+                key={sprint.id}
+                sprint={sprint}
+              />
             )
         )}
       </ListContainer>
@@ -83,7 +93,12 @@ const SprintList = () => {
           {sprintList.map(
             (sprint) =>
               sprint.status === SprintStatusEnum.FINISH && (
-                <SprintElement key={sprint.id}  sprint={sprint} />
+                <SprintElement
+                  viewSprintId={viewSprintId}
+                  setViewSprintId={setViewSprintId}
+                  key={sprint.id}
+                  sprint={sprint}
+                />
               )
           )}
         </ToggleListContainer>

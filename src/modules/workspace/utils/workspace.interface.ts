@@ -1,7 +1,7 @@
 export interface WorkspaceListResponse {
   message: string;
   body: {
-    ID: number;
+    Id: number;
     CreatedAt: string;
     UpdatedAt: string;
     DeletedAt: null | string;
@@ -13,7 +13,7 @@ export interface WorkspaceListResponse {
 export interface CreatedWorkspaceResponse {
   message: string;
   body: {
-    ID: number;
+    Id: number;
     CreatedAt: string;
     UpdatedAt: string;
     DeletedAt: null | string;
@@ -24,7 +24,7 @@ export interface CreatedWorkspaceResponse {
 }
 
 export interface WorkspaceListMemberResponse {
-  ID: number;
+  Id: number;
   CreatedAt: string;
   UpdatedAt: string;
   DeletedAt: null | string;
