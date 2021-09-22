@@ -1,3 +1,4 @@
+import { SprintStatusEnum } from '@/common/types/enums/SprintStatusEnum';
 import { MemberType } from '@/common/types/member.type';
 import { SprintElementType } from '@/common/types/sprintElement.type';
 import { WorkspaceType } from '@/common/types/workspace.type';
@@ -10,7 +11,7 @@ import Router from 'next/router';
 import { takeEvery, all, put } from 'redux-saga/effects';
 import { select, takeLatest, call } from 'typed-redux-saga';
 import { fetchSprintListAPI, createSprintAPI } from './sprint.api';
-import sprintReducer from './sprint.slice';
+import sprintReducer, { selectSprintList } from './sprint.slice';
 
 function* fetchSprintListSaga() {
   try {
@@ -37,8 +38,34 @@ function* fetchSprintListSaga() {
 function* createSprintSaga(action: PayloadAction<string>) {
   try {
     const workspaceId = yield* select(selectCurrentWorkspaceId);
+    const sprintList = yield * select(selectSprintList);
     if (workspaceId) {
-      const { body } = yield* call(createSprintAPI, workspaceId, action.payload);
+      const status =  sprintList.length === 0 ?
+        SprintStatusEnum.CURRENT : SprintStatusEnum.READY;
+      const { body } = yield* call(createSprintAPI, workspaceId, action.payload, status);
+      const newSprint = {
+        id: body.ID,
+        order: 0,
+        title: body.Name,
+        status: body.Status,
+        workspaceId: body.WorkspaceId,
+      };
+      yield put(sprintReducer.actions.createSprintSuccess(newSprint));
+    } else {
+      console.log('no workspaceId');
+    }
+  } catch (error) {
+    yield put(sprintReducer.actions.createSprintError());
+  }
+}
+function* deleteSprintSaga(action: PayloadAction<string>) {
+  try {
+    const workspaceId = yield* select(selectCurrentWorkspaceId);
+    const sprintList = yield* select(selectSprintList);
+    if (workspaceId) {
+      const status =
+        sprintList.length === 0 ? SprintStatusEnum.CURRENT : SprintStatusEnum.READY;
+      const { body } = yield* call(createSprintAPI, workspaceId, action.payload, status);
       const newSprint = {
         id: body.ID,
         order: 0,

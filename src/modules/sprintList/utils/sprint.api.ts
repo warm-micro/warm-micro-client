@@ -9,9 +9,16 @@ export const fetchSprintListAPI = (workspaceId: number) =>
     query: { workspaceId: workspaceId },
   });
 
-export const createSprintAPI = (workspaceId: number, newSprint: string) =>
+export const createSprintAPI = (
+  workspaceId: number,
+  newSprint: string,
+  status: SprintStatusEnum
+) =>
   makeRequest<CreatedSprintResponse>({
     method: 'post',
     url: 'sprint',
-    body: { name: newSprint, workspaceId: workspaceId, status: SprintStatusEnum.READY },
+    body: { name: newSprint, workspaceId: workspaceId, status: status  },
   });
+export const deleteSprintAPI = (
+  sprintId: number,
+) => makeRequest
