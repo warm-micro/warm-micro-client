@@ -1,7 +1,9 @@
 import sprintReducer, {
   selectCurrentSprint,
+  selectFinishSprint,
   selectSprintList,
 } from '@/modules/sprintList/utils/sprint.slice';
+import workspaceReducer from '@/modules/workspace/utils/workspace.slice';
 import Router, { useRouter } from 'next/dist/client/router';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,15 +14,24 @@ const index = () => {
   const dispatch = useDispatch();
   const currentSprint = useSelector(selectCurrentSprint);
   const sprintList = useSelector(selectSprintList);
-  useEffect(() => {
-    dispatch(sprintReducer.actions.fetchSprintListStart());
-    if (currentSprint && sprintList.length > 0) {
-      router.push(
-        '/workspace/[workspace]/sprint/[sprint]',
-        `/workspace/${router.query.workspace}/sprint/${currentSprint.id}`
-      );
-    }
-  }, [currentSprint]);
+  const finishSprint = useSelector(selectFinishSprint);
+  // useEffect(() => {
+  //   dispatch(workspaceReducer.actions.fetchWorkspaceListStart());
+  //   dispatch(sprintReducer.actions.fetchSprintListStart());
+  //   if (sprintList.length > 0) {
+  //     if(currentSprint)  {
+  //       router.push(
+  //           '/workspace/[workspace]/sprint/[sprint]',
+  //           `/workspace/${router.query.workspace}/sprint/${currentSprint.id}`
+  //         );
+  //     }  else if  (finishSprint)  {
+  //       router.push(
+  //         '/workspace/[workspace]/sprint/[sprint]',
+  //         `/workspace/${router.query.workspace}/sprint/${finishSprint.id}`
+  //       );
+  //     }
+  //   }
+  // }, [currentSprint, sprintList]);
   return (
     <Container>
       <BoardContainer>
@@ -30,7 +41,7 @@ const index = () => {
       </BoardContainer>
     </Container>
   );
-};
+};;
 
 export default index;
 

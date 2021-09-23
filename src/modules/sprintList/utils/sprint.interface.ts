@@ -1,4 +1,5 @@
 import { SprintStatusEnum } from '@/common/types/enums/SprintStatusEnum';
+import { SprintElementType } from '@/common/types/sprintElement.type';
 
 export interface SprintListResponse {
   message: string;
@@ -13,7 +14,7 @@ export interface SprintListResponse {
     WorkspaceId: number;
   }[];
 }
-export interface CreatedSprintResponse {
+export interface SprintResponse {
   message: string;
   body: {
     ID: number;
@@ -25,4 +26,8 @@ export interface CreatedSprintResponse {
     Order: number;
     WorkspaceId: number;
   };
+}
+export interface changeSprint {
+  element: SprintElementType;
+  status: SprintStatusEnum;
 }

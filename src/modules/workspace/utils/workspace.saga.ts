@@ -7,7 +7,12 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import Router from 'next/router';
 import { takeEvery, all, put } from 'redux-saga/effects';
 import { call, select, takeLatest } from 'typed-redux-saga';
-import { createWorkspaceAPI, fetchWorkspaceListAPI } from './workspace.api';
+import {
+  createWorkspaceAPI,
+  fetchMemberListAPI,
+  fetchWorkspaceListAPI,
+  joinWorkspaceAPI,
+} from './workspace.api';
 import workspaceReducer from './workspace.slice';
 
 function* fetchWorkspaceListSaga() {
@@ -26,6 +31,13 @@ function* fetchWorkspaceListSaga() {
         };
       });
       yield put(workspaceReducer.actions.fetchWorkspaceListSuccess(workspaceList));
+      if (Router.query.workspace) {
+        yield put(
+          workspaceReducer.actions.setCurrentWorkspace(
+            parseInt(Router.query.workspace.toString())
+          )
+        );
+      }
     } else {
       yield call(Router.push, '/login');
     }
@@ -49,12 +61,49 @@ function* createWorkspaceSaga(action: PayloadAction<string>) {
     yield put(workspaceReducer.actions.createWorkspaceError());
   }
 }
+function* fetchMemberListSaga() {
+  try {
+    if (Router.query.workspace) {
+      const { body } = yield* call(
+        fetchMemberListAPI,
+        parseInt(Router.query.workspace?.toString())
+      );
+      const memberList: MemberType[] = body.Members.map((member) => {
+        return {
+          id: member.Id,
+          userId: member.Username,
+          name: member.Nickname,
+          email: member.Email,
+          phoneNumber: member.PhoneNumber,
+          url: '',
+          active: true,
+        };
+      });
+      yield put(workspaceReducer.actions.fetchMemberListSuccess(memberList));
+    } else {
+      console.log('no workspace query');
+    }
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+function* joinWorkspaceSaga(action: PayloadAction<string>) {
+  try {
+    console.log(action.payload);
+    const { body } = yield* call(joinWorkspaceAPI, action.payload);
+    yield put(workspaceReducer.actions.fetchWorkspaceListStart());
+  } catch (error) {
+    console.log(error.message);
+  }
+}
 export function* watchWorkspace() {
   yield all([
     takeEvery(
       workspaceReducer.actions.fetchWorkspaceListStart.type,
       fetchWorkspaceListSaga
     ),
+    takeEvery(workspaceReducer.actions.fetchMemberListStart.type, fetchMemberListSaga),
     takeLatest(workspaceReducer.actions.createWorkspaceStart.type, createWorkspaceSaga),
+    takeLatest(workspaceReducer.actions.joinWorkspaceStart.type, joinWorkspaceSaga),
   ]);
 }

@@ -1,7 +1,9 @@
 import MemberImg from '@/common/component/img/MemberImg';
 import { MemberType } from '@/common/types/member.type';
+import { selectMyInfo } from '@/modules/myPage/utils/myInfo.slice';
 import { useRouter } from 'next/dist/client/router';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import MemberActive from './MemberActive';
 
@@ -10,12 +12,12 @@ interface MemberElementProps {
 }
 
 const MemberElement = ({ member }: MemberElementProps) => {
-  const me = '001';
   const router = useRouter();
+  const myInfo = useSelector(selectMyInfo);
   return (
     <Container
       onClick={() =>
-        member.id !== me &&
+        member.id !== myInfo.myInfo.id &&
         router.replace(
           `/workspace/[workspace]/directMessage/[memberId]`,
           `/workspace/${router.query.workspace}/directMessage/${member.id}`
@@ -24,10 +26,10 @@ const MemberElement = ({ member }: MemberElementProps) => {
     >
       <MemberImgContainer>
         <MemberActive active={member.active} />
-        <MemberImg url={member.url} />
+        <MemberImg url={member.url} name={member.name} />
       </MemberImgContainer>
       <MemberName>
-        {member.name} {member.id === me && '(me)'}
+        {member.name} {member.id === myInfo.myInfo.id && '(me)'}
       </MemberName>
     </Container>
   );

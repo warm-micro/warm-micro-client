@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const index = () => {
-  return <SprintContent  />;
+  return <SprintContent />;
 };
 
 export default index;
