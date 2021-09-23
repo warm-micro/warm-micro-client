@@ -6,9 +6,8 @@ export const fetchMyInfoAPI = () =>
     method: 'get',
     url: 'user/info',
   });
-export const fetchUserInfoAPI = (id:  number) =>
+export const fetchUserInfoAPI = (id: number) =>
   makeRequest<UserInfoResponse>({
     method: 'get',
     url: `user/info/${id}`,
   });
-

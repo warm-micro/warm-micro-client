@@ -1,24 +1,26 @@
 import { dummyMessage } from '@/common/utils/dummy';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { selectMyInfo } from '../myPage/utils/myInfo.slice';
 import Input from './component/Input';
 import ReceivedItem from './component/ReceivedItem';
 import SendedItem from './component/SendedItem';
 import Header from './container/Header';
 
 const DirectMessage = () => {
-  const me = '001';
+   const myInfo = useSelector(selectMyInfo);
   return (
     <Container>
       <Header />
       <Content>
-        {dummyMessage.map((message) =>
-          message.sender === me ? (
+        {/* {dummyMessage.map((message) =>
+          message.sender === myInfo.myInfo.id ? (
             <SendedItem key={message.id} message={message} />
           ) : (
             <ReceivedItem key={message.id} message={message} />
           )
-        )}
+        )} */}
       </Content>
       <Input />
     </Container>

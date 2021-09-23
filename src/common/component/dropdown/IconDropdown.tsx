@@ -15,7 +15,7 @@ interface ContainerProps {
 const IconDropdown = ({ width, icon, children }: IconDropdownProps) => {
   const [visible, setVisible] = useState(false);
   return (
-    <Container>
+    <Container className="dropdown" onMouseLeave={() => setVisible(false)}>
       <IconBtn
         url={`/images/${icon}.png`}
         width={30}
@@ -46,7 +46,7 @@ const OverlayContainer = styled.div<ContainerProps>`
   z-index: 100;
   width: ${(props) => `${props.width}px`};
   right: 0;
-  transition: all 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
   background: #ffffff;
   border: 0.8px solid #c4c4c4;
   filter: drop-shadow(4px 8px 10px rgba(0, 0, 0, 0.25));

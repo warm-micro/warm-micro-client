@@ -6,11 +6,11 @@ export interface ChatType {
   id: string;
   title: string;
   sprintId: string;
-  time: Date;
+  createdAt: Date;
   authorId: string;
   content: string;
-  pTag: personTag[] | null;
-  hTag: hashTag[] | null;
+  ptags: personTag[] | null;
+  htags: hashTag[] | null;
   isCard: boolean;
   progress: ProgressEnum;
   progressOrder: number;

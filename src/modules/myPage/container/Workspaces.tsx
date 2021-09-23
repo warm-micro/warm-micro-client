@@ -14,7 +14,9 @@ import WorkspaceItem from '../component/WorkspaceItem';
 
 const Workspaces = () => {
   const [visible, setVisible] = useState(false);
+  const [inviteVisible, setInviteVisible] = useState(false);
   const [newName, setNewName] = useState('');
+  const [code, setCode] = useState('');
   const workspaces = useSelector(selectWorkspaceList);
   console.log(workspaces);
   const dispatch = useDispatch();
@@ -22,11 +24,21 @@ const Workspaces = () => {
     setVisible(false);
     setNewName('');
   };
+  const onInviteCancel = () => {
+    setInviteVisible(false);
+    setCode('');
+  };
 
   const onSubmit = () => {
     dispatch(workspaceReducer.actions.createWorkspaceStart(newName));
     setVisible(false);
     setNewName('');
+  };
+
+  const onInviteSubmit = () => {
+    dispatch(workspaceReducer.actions.joinWorkspaceStart(code));
+    setInviteVisible(false);
+    setCode('');
   };
   return (
     <Container>
@@ -44,16 +56,41 @@ const Workspaces = () => {
           </ButtonContainer>
         </ModalContainer>
       </Modal>
+      <Modal visible={inviteVisible}>
+        <ModalContainer>
+          <ModalTitle>Join New Workspace</ModalTitle>
+          <Input
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
+            placeholder="Enter workspace code..."
+          />
+          <ButtonContainer>
+            <CancelBtn onClick={onInviteCancel}>CANCEL</CancelBtn>
+            <ConfirmBtn onClick={onInviteSubmit}>JOIN</ConfirmBtn>
+          </ButtonContainer>
+        </ModalContainer>
+      </Modal>
       <MyInfo>
         <MyInfoTitle>Workspaces</MyInfoTitle>
-        <IconBtn
-          onClick={() => {
-            setVisible(true);
-          }}
-          url={'images/add.png'}
-          height={25}
-          width={25}
-        />
+        <div className="buttons">
+      
+          <IconBtn
+            onClick={() => {
+              setVisible(true);
+            }}
+            url={'images/add.png'}
+            height={25}
+            width={25}
+          />
+          <IconBtn
+            onClick={() => {
+              setInviteVisible(true);
+            }}
+            url={'images/arrow.png'}
+            height={25}
+            width={25}
+          />
+        </div>
       </MyInfo>
       <Content>
         {workspaces.map((workspace) => (
@@ -104,6 +141,9 @@ const MyInfo = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  .buttons {
+    display: flex;
+  }
   min-height: 50px;
   height: 50px;
 `;
@@ -115,6 +155,7 @@ const Content = styled.div`
   border-radius: 10px;
   padding: 25px;
   /* flex: 1; */
+  min-height: 200px;
   overflow-y: scroll;
 `;
 

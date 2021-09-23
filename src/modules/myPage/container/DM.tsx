@@ -36,4 +36,5 @@ const Content = styled.div`
   border-radius: 10px;
   padding: 25px;
   overflow-y: scroll;
+  min-height: 200px;
 `;

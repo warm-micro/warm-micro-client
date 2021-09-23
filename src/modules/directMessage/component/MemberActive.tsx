@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface MemterActiveProps {
-  active: boolean;
+  active?: boolean;
 }
 
 const MemberActive = ({ active }: MemterActiveProps) => {
