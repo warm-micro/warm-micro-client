@@ -17,7 +17,7 @@ function* fetchWorkspaceListSaga() {
       const workspaceRes = yield * call(fetchWorkspaceListAPI, myInfo.myInfo.id);
       const workspaceList: WorkspaceType[] = workspaceRes.body.map((workspace) => {
         return {
-          id: workspace.ID,
+          id: workspace.Id,
           name: workspace.Name,
           sprintList: [],
           url: workspace.Name == 'warm-micro' ? '/images/warm.png' : null,
@@ -37,7 +37,7 @@ function* createWorkspaceSaga(action: PayloadAction<string>) {
   try {
     const { body } = yield * call(createWorkspaceAPI,  action.payload);
     const newWorkspace = {
-      id: body.ID,
+      id: body.Id,
       name: body.Name,
       sprintList: [],
       url: body.Name == 'warm-micro' ? '/images/warm.png' : null,

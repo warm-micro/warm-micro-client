@@ -1,4 +1,5 @@
 import { RootState } from '@/app/rootReducer';
+import { SprintStatusEnum } from '@/common/types/enums/SprintStatusEnum';
 import { SprintElementType } from '@/common/types/sprintElement.type';
 import { WorkspaceType } from '@/common/types/workspace.type';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
@@ -49,3 +50,7 @@ export default sprintReducer;
 export const selectSprintList = (state: RootState) => state.sprintReducer.sprintList;
 export const selectSprintById = (state: RootState, sprintId: number) =>
   state.sprintReducer.sprintList.find((sprint) => sprint.id === sprintId);
+export const selectCurrentSprint = (state: RootState) =>
+  state.sprintReducer.sprintList.find(
+    (sprint) => sprint.status === SprintStatusEnum.CURRENT
+  );

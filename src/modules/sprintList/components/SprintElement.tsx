@@ -4,25 +4,30 @@ import { SprintElementType } from '@/common/types/sprintElement.type';
 import { SprintStatusEnum } from '@/common/types/enums/SprintStatusEnum';
 import { useRouter } from 'next/dist/client/router';
 import { route } from 'next/dist/next-server/server/router';
+import IconBtn from '@/common/component/button/IconBtn';
 
 interface SprintElementProps {
   sprint: SprintElementType;
+  setViewSprintId: (id: number) => void;
+  viewSprintId?: number;
 }
 
-const SprintElement = ({ sprint }: SprintElementProps) => {
+const SprintElement = ({ setViewSprintId, viewSprintId, sprint }: SprintElementProps) => {
   const router = useRouter();
   return (
     <Container
-      onClick={() =>
+      onClick={() => {
         router.push(
           '/workspace/[workspace]/sprint/[sprint]',
           `/workspace/${router.query.workspace}/sprint/${sprint.id}`
-        )
-      }
-      isCurrent={sprint.status === SprintStatusEnum.CURRENT}
+        );
+        setViewSprintId(sprint.id);
+      }}
+      isCurrent={sprint.id === viewSprintId}
     >
-      <SprintNumber>#{sprint.order + 1}</SprintNumber>
-      {sprint.title}
+      <SprintNumber className="number">#{sprint.order + 1}</SprintNumber>
+      {sprint.title} 
+      <Button url={'/images/dots.png'} height={25} width={25} />
     </Container>
   );
 };
@@ -46,11 +51,19 @@ const Container = styled.div<SprintCurrentType>`
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  .button {
+    display: none;
+  }
   &:hover {
     background: #e5e5e5;
     color: #000000;
-    div {
+    .number {
       border: 0.5px solid #000000;
+    }
+    .button {
+      display: flex;
+      margin-left: auto;
+      margin-right: 10px;
     }
   }
   ${(props) =>
@@ -77,4 +90,9 @@ const SprintNumber = styled.div`
   margin: 0 20px;
   transition: all 0.5s;
   
+`;
+const Button = styled(IconBtn)`
+  border: none !important;
+  visibility: hidden;
+  align-self: flex-end;
 `;
