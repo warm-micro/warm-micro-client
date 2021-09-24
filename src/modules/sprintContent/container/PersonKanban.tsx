@@ -14,7 +14,9 @@ const getPersonCardList = (chatIdList: string[], memberId: string) => {
     ?.map(
       (id) =>
         Chats.filter(
-          (chat) => chat.id == id && !!chat.pTag?.find((tag) => tag.personId === memberId)
+          (chat) =>
+            chat.id == id &&
+            !!chat.pTag?.find((tag) => tag.personId.toString() === memberId)
         )[0]
     )
     .filter((card) => card !== undefined);
@@ -32,8 +34,8 @@ const PersonKanban = ({  show, chatIdList }: PersonkanbanProps) => {
             >
               <PersonTitle url={member.url} name={member.name} />
               <KanbanCol
-                id={member.id}
-                cardList={getPersonCardList(chatIdList, member.id)}
+                id={member.id.toString()}
+                cardList={getPersonCardList(chatIdList, member.id.toString())}
               />
             </ColContainer>
           )}

@@ -12,15 +12,13 @@ import MemberActive from '../component/MemberActive';
 
 const Header = () => {
   const router = useRouter();
-  const member = useSelector((state: RootState) =>
-    selectMemberById(state, parseInt(router.query.memberId? router.query.memberId.toString(): '0'))
-  );
+  const member = Members.find((member) => member.id.toString() === router.query.memberId);
 
   return (
     <Container>
       <DmProfileContainer>
         <MemberActive active={member?.active} />
-        <DmProfileImg url={member?.url} />
+        <DmProfileImg url={member?.url} name={member?.name} />
         <Name>{member?.name}</Name>
       </DmProfileContainer>
       <DmProfileDetailContainer>

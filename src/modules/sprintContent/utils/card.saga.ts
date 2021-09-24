@@ -1,3 +1,4 @@
+import { ChatType } from '@/common/types/chat.type';
 import { SprintStatusEnum } from '@/common/types/enums/SprintStatusEnum';
 import { MemberType } from '@/common/types/member.type';
 import { SprintElementType } from '@/common/types/sprintElement.type';
@@ -10,32 +11,17 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import Router from 'next/router';
 import { takeEvery, all, put } from 'redux-saga/effects';
 import { select, takeLatest, call } from 'typed-redux-saga';
-import {
-  fetchSprintListAPI,
-  createSprintAPI,
-  deleteSprintAPI,
-  changeSprintAPI,
-} from './card.api';
-import { changeSprint } from './card.interface';
-import sprintReducer, { selectCurrentSprint, selectSprintList } from './card.slice';
+import { fetchCardListAPI } from './card.api';
+import cardReducer from './card.slice';
 
-function* fetchSprintListSaga() {
+function* fetchCardListSaga() {
   try {
-    if (Router.query.workspace) {
+    if (Router.query.sprint) {
       const res = yield* call(
-        fetchSprintListAPI,
-        parseInt(Router.query.workspace.toString())
+        fetchCardListAPI,
+        parseInt(Router.query.sprint.toString())
       );
-      const sprintList: SprintElementType[] = res.body.map((sprint, index) => {
-        return {
-          id: sprint.ID,
-          order: index,
-          title: sprint.Name,
-          status: sprint.Status,
-          workspaceId: sprint.WorkspaceId,
-        };
-      });
-      yield put(sprintReducer.actions.fetchSprintListSuccess(sprintList));
+      yield put(cardReducer.actions.fetchCardListSuccess(res.body));
     } else {
       yield call(Router.push, '/myPage');
     }

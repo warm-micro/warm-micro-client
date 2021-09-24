@@ -14,6 +14,7 @@ interface MemberElementProps {
 const MemberElement = ({ member }: MemberElementProps) => {
   const router = useRouter();
   const myInfo = useSelector(selectMyInfo);
+  console.log(myInfo);
   return (
     <Container
       onClick={() =>

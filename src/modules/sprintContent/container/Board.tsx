@@ -28,7 +28,7 @@ const Board = ({ setShowThread, onShowThreads }: BoardProps) => {
   const sprint = useSelector((state:  RootState) => selectSprintById(state, parseInt(sprintId)));
   // const sprint = dummySprint.find((sp) => sp.id === sprintId);
   const chatIdList = dummySprintChat.find(
-    (spChat) => spChat.sprintId === sprintId
+    (spChat) => spChat.sprintId === parseInt(sprintId)
   )?.chats;
 
   const [view, setView] = useState(ViewEnum.BOARD);

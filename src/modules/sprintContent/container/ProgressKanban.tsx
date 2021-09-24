@@ -4,11 +4,13 @@ import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 import { ProgressEnum } from '../utils/ProgressEnum';
+import { MapType } from './Kanban';
 import KanbanCol from './KanbanCol';
 
 interface ProgressKanbanProps {
   show: boolean;
   chatIdList: string[];
+  elements: MapType;
 }
 
 const progressList = [
@@ -18,40 +20,43 @@ const progressList = [
   ProgressEnum.FINISHED,
 ];
 
-const ProgressKanban = ({show, chatIdList }: ProgressKanbanProps) => {
-  const backlogCols = chatIdList.map((id) =>
-    Chats.filter((chat) => chat.id == id && chat.progress == ProgressEnum.BACKLOG)[0]
-  ).filter(card => card !== undefined);
-  const workInProgressCols = chatIdList
-    .map(
-      (id) =>
-        Chats.filter(
-          (chat) => chat.id == id && chat.progress == ProgressEnum.INPROGRESS
-        )[0]
-    )
-    .filter((card) => card !== undefined);
-  const reviewCols = chatIdList
-    .map(
-      (id) =>
-        Chats.filter((chat) => chat.id == id && chat.progress == ProgressEnum.REVIEW)[0]
-    )
-    .filter((card) => card !== undefined);
-  const finishedCols = chatIdList
-    .map(
-      (id) =>
-        Chats.filter((chat) => chat.id == id && chat.progress == ProgressEnum.FINISHED)[0]
-    )
-    .filter((card) => card !== undefined);
+const ProgressKanban = ({ elements, show, chatIdList }: ProgressKanbanProps) => {
+  // const backlogCols = chatIdList
+  //   .map(
+  //     (id) =>
+  //       Chats.filter((chat) => chat.id == id && chat.progress == ProgressEnum.BACKLOG)[0]
+  //   )
+  //   .filter((card) => card !== undefined);
+  // const workInProgressCols = chatIdList
+  //   .map(
+  //     (id) =>
+  //       Chats.filter(
+  //         (chat) => chat.id == id && chat.progress == ProgressEnum.INPROGRESS
+  //       )[0]
+  //   )
+  //   .filter((card) => card !== undefined);
+  // const reviewCols = chatIdList
+  //   .map(
+  //     (id) =>
+  //       Chats.filter((chat) => chat.id == id && chat.progress == ProgressEnum.REVIEW)[0]
+  //   )
+  //   .filter((card) => card !== undefined);
+  // const finishedCols = chatIdList
+  //   .map(
+  //     (id) =>
+  //       Chats.filter((chat) => chat.id == id && chat.progress == ProgressEnum.FINISHED)[0]
+  //   )
+  //   .filter((card) => card !== undefined);
 
-  const progressMap = {
-    [ProgressEnum.BACKLOG]: { title: 'Backlog', list: backlogCols },
-    [ProgressEnum.INPROGRESS]: {
-      title: 'Work in Progress',
-      list: workInProgressCols,
-    },
-    [ProgressEnum.REVIEW]: { title: 'In Review', list: reviewCols },
-    [ProgressEnum.FINISHED]: { title: 'Finished', list: finishedCols },
-  };
+  // const progressMap = {
+  //   [ProgressEnum.BACKLOG]: { title: 'Backlog', list: backlogCols },
+  //   [ProgressEnum.INPROGRESS]: {
+  //     title: 'Work in Progress',
+  //     list: workInProgressCols,
+  //   },
+  //   [ProgressEnum.REVIEW]: { title: 'In Review', list: reviewCols },
+  //   [ProgressEnum.FINISHED]: { title: 'Finished', list: finishedCols },
+  // };
 
   return (
     <Container show={show}>
@@ -62,9 +67,9 @@ const ProgressKanban = ({show, chatIdList }: ProgressKanbanProps) => {
               ref={provided.innerRef}
               {...provided.draggableProps}
               {...provided.dragHandleProps}
-            > 
-              <KanbanTitle>{progressMap[progress].title}</KanbanTitle>
-              {!!progressMap[progress].list && <KanbanCol id={progress} cardList={progressMap[progress].list} />}
+            >
+              <KanbanTitle>{elements[progress]?.title}</KanbanTitle>
+                <KanbanCol id={progress} cardList={elements[progress].list} />
             </ColContainer>
           )}
         </Draggable>
@@ -82,6 +87,7 @@ const ColContainer = styled.div`
   min-width: 250px;
   padding: 30px 30px 0 0;
   flex: 0 0 auto;
+  min-height: 300px;
 `;
 
 interface ContainerProps{
