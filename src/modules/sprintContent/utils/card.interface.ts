@@ -10,7 +10,7 @@ export interface CardListResponse {
     content: null | string;
     createdAt: string;
     sprintId: number;
-    authorid: number;
+    authorId: number;
     isCard: boolean;
     progress: ProgressEnum;
     progressOrder: number;

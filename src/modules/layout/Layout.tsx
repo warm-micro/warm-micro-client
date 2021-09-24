@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import myInfoReducer from '../myPage/utils/myInfo.slice';
 import sprintReducer from '../sprintList/utils/sprint.slice';
 import workspaceReducer from '../workspace/utils/workspace.slice';
 import Sidebar from './components/Sidebar';
@@ -12,6 +13,7 @@ const Layout = ({ children }: React.PropsWithChildren<{}>) => {
     dispatch(workspaceReducer.actions.fetchWorkspaceListStart());
     dispatch(sprintReducer.actions.fetchSprintListStart());
     dispatch(workspaceReducer.actions.fetchMemberListStart());
+    dispatch(myInfoReducer.actions.fetchMyInfoStart());
     console.log("why is not working")
   }, []);
   return (

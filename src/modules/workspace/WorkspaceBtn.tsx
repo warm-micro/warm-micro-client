@@ -11,9 +11,7 @@ import { selectCurrentWorkspace, selectWorkspaceById } from './utils/workspace.s
 
 const WorkspaceBtn = () => {
   
-  const workspace = useSelector(
-    selectCurrentWorkspace
-  );
+  const workspace = useSelector(selectCurrentWorkspace);
 
   return (
     <Container

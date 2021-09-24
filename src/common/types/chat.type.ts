@@ -5,12 +5,12 @@ import { personTag } from './personTag.type';
 export interface ChatType {
   id: string;
   title: string;
-  sprintId: string;
-  createdAt: Date;
+  sprintId: number;
+  time: Date;
   authorId: string;
   content: string;
-  ptags: personTag[] | null;
-  htags: hashTag[] | null;
+  pTag: personTag[] | null;
+  hTag: hashTag[] | null;
   isCard: boolean;
   progress: ProgressEnum;
   progressOrder: number;

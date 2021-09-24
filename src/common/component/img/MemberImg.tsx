@@ -7,8 +7,8 @@ interface ImageProps {
 }
 
 const MemberImg = ({ url, name }: ImageProps) => {
-  return url ? (
-    <Image src={url} />
+  return url || name === 'Hyewon Kwak' || 'Jinho Jeong' ? (
+    <Image src={name === 'Hyewon Kwak' ? '/images/hyewon.jpg' : '/images/jinho.png'} />
   ) : (
     <Container className="images">{name ? name[0] : '왐'}</Container>
   );

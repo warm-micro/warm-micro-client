@@ -4,8 +4,8 @@ import { personTag } from './personTag.type';
 
 export interface DirectMessageType {
   id: string;
-  sender: string;
-  receiver: string;
+  sender: number;
+  receiver: number;
   time: Date;
   messageContent: string;
 }

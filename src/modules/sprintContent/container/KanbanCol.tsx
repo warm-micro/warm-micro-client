@@ -3,30 +3,31 @@ import React from 'react';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 import Card from '../components/Card';
+import { ProgressEnum } from '../utils/ProgressEnum';
 
 interface KanbanColProps {
   id: string;
-  cardList: (ChatType)[];
+  cardList: ChatType[];
 }
 
 const KanbanCol = ({ id, cardList }: KanbanColProps) => {
   return (
-    <Container>
-      <Droppable droppableId={id}>
-        {(provided, snapshot) => (
-          <div
+    <Droppable droppableId={id}>
+      {(provided, snapshot) => (
+        
+          <Container
             ref={provided.innerRef}
             // style={{ backgroundColor: snapshot.isDraggingOver ? 'blue' : 'grey' }}
             {...provided.droppableProps}
           >
             {cardList.map((card, index) => (
-              card.isCard && <Card key={card.id} id={`${id}-${card.id}`} card={card} index={index} />
+              <Card key={card.id} id={`${id}-${card.id}`} card={card} index={index} />
             ))}
             {provided.placeholder}
-          </div>
-        )}
-      </Droppable>
-    </Container>
+          </Container>
+        
+      )}
+    </Droppable>
   );
 };
 
@@ -37,7 +38,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   width: 250px;
-  min-height: 100px;
+  min-height: 200px;
   background: #f6f3ff;
   border-radius: 20px;
   margin-top: 10px;

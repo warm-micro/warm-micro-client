@@ -1,16 +1,26 @@
 import { Members } from '@/common/utils/dummy';
 import { useRouter } from 'next/dist/client/router';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { SendBtn } from '@/common/component/button/SendBtn';
 
-const Input = () => {
+interface inputProps {
+  setView: (view: boolean) => void;
+}
+
+const Input = ({ setView }: inputProps) => {
   const router = useRouter();
   const member = Members.filter((member) => member.userId === router.query.memberId)[0];
+  const [value, setValue] = useState('');
   return (
     <Container>
-      <InputItem placeholder={`leave message to ${member?.name}...`} />
-      <SendBtn>SEND</SendBtn>
+      <InputItem 
+      value={value} 
+      onChange={e => setValue(e.target.value)} placeholder={`leave message to jinho jeong...`} />
+      <SendBtn onClick={() => {
+        setView(true);
+        setValue('');
+        }}>SEND</SendBtn>
     </Container>
   );
 };

@@ -25,7 +25,7 @@ function* fetchWorkspaceListSaga() {
           id: workspace.Id,
           name: workspace.Name,
           sprintList: [],
-          url: workspace.Name == 'warm-micro' ? '/images/warm.png' : null,
+          url: null,
           members: [],
           code: workspace.Code,
         };

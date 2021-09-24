@@ -1,6 +1,6 @@
 export interface personTag {
   id: string;
   order: number;
-  personId: string;
+  personId: number;
   cardOrder: number;
 }

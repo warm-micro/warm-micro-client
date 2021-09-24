@@ -4,6 +4,7 @@ import { SprintStatusEnum } from '@/common/types/enums/SprintStatusEnum';
 import { SprintElementType } from '@/common/types/sprintElement.type';
 import { WorkspaceType } from '@/common/types/workspace.type';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { CreateCardResponse } from './card.interface';
 
 interface CardListType {
   loading: boolean;
@@ -28,45 +29,25 @@ const cardReducer = createSlice({
       state.loading = false;
       state.error = undefined;
     },
-    createCardStart: (state, action: PayloadAction<string>) => {
+    createCardStart: (state, action: PayloadAction<CreateCardResponse>) => {
       state.loading = true;
       state.error = undefined;
     },
-    createCardSuccess: (state, action: PayloadAction<SprintElementType>) => {
-      const result = action.payload;
-      result.order = state.sprintList.length;
-      state.sprintList.push(result);
+    createCardSuccess: (state, action: PayloadAction<ChatType>) => {
+      state.loading = false;
     },
-    deleteSprintStart: (state, action: PayloadAction<number>) => {
+    deleteCardStart: (state, action: PayloadAction<number>) => {
       state.loading = true;
     },
-    deleteSprintSuccess: (state, action: PayloadAction<number>) => {
+    deleteCardSuccess: (state, action: PayloadAction<number>) => {
       state.loading = false;
-      state.sprintList = state.sprintList.filter(
-        (sprint) => sprint.id !== action.payload
-      );
-      state.sprintList.map((sprint, index) => (sprint.order = index));
+      state.cardList = state.cardList.filter((card) => card.id !== action.payload);
     },
-    changeSprintStatusStart: (state, action: PayloadAction<changeSprint>) => {
+    changeToCardStart: (state, action: PayloadAction<number>) => {
       state.loading = true;
     },
-    changeSprintStatusSuccess: (state, action: PayloadAction<changeSprint>) => {
-      state.loading = false;
-      const index = action.payload.element.order;
-      if (
-        action.payload.element.status === SprintStatusEnum.CURRENT &&
-        state.sprintList.length - 1 > index
-      ) {
-        state.sprintList[index + 1] = {
-          ...state.sprintList[index + 1],
-          status: SprintStatusEnum.CURRENT,
-        };
-      }
-      console.log(state.sprintList, index, '??');
-      state.sprintList[index] = {
-        ...action.payload.element,
-        status: action.payload.status,
-      };
+    changeToCardSuccess: (state, action: PayloadAction<number>) => {
+      state.cardList.filter(card => card.id === action.payload)[0].isCard = !state.cardList.filter(card => card.id === action.payload)[0].isCard ;
     },
   },
 });
