@@ -17,7 +17,8 @@ const MyPage = () => {
   const onChangeInfoName = (newName: string) => {
     // setMember({ ...member, name: newName });
   };
-
+  const { myInfo } = useSelector(selectMyInfo);
+  console.log(myInfo);
   useEffect(() => {
     dispatch(myInfoReducer.actions.fetchMyInfoStart());
     dispatch(workspaceReducer.actions.fetchWorkspaceListStart());

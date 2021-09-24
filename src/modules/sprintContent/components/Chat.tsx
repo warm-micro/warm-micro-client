@@ -11,13 +11,23 @@ interface ChatProps {
 const Chat = ({ chatId, onShowThreads }: ChatProps) => {
   const chatInfo = Chats.find((chat) => chat.id === chatId);
   const threadIds = dummySprintThread.find((threads) => threads.chatId === chatId);
-
+  
   return chatInfo ? (
     <Container>
       <Author authorId={chatInfo.authorId} time={chatInfo.time} />
-      <Content>{chatInfo.content}</Content>
+      <Content>
+        {chatInfo.content}{' '}
+        {chatInfo.pTag?.map((pTag) => {
+          const member = Members.find((member) => member.id === pTag.personId);
+          return <div className="tag">@{member?.name}</div>;
+        })}
+        {chatInfo.hTag?.map((hTag) => {
+          
+          return <div className="tag">#{hTag.name}</div>;
+        })}
+      </Content>
       <ThreadBtn onClick={() => onShowThreads(chatId)}>
-        {threadIds && `${threadIds.threads.length}개의 답글`}
+        {threadIds && `답글보기`}
       </ThreadBtn>
     </Container>
   ) : (
@@ -38,6 +48,10 @@ const Content = styled.div`
   word-wrap: break-word;
   font-size: 14px;
   margin: 15px 0;
+  .tag {
+    color: #552aff;
+    margin-left: 5px;
+  }
 `;
 
 const ThreadBtn = styled.div`

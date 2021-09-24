@@ -1,29 +1,48 @@
-import { dummyMessage } from '@/common/utils/dummy';
-import React from 'react';
+import {
+  dummyMessage,
+  dummyMessageReceive,
+  dummyMessageSend,
+} from '@/common/utils/dummy';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { selectMyInfo } from '../myPage/utils/myInfo.slice';
 import Input from './component/Input';
 import ReceivedItem from './component/ReceivedItem';
 import SendedItem from './component/SendedItem';
 import Header from './container/Header';
 
 const DirectMessage = () => {
-  const me = '001';
+  const myInfo = useSelector(selectMyInfo);
+  const [view, setView] = useState(false);
+  const [viewReceive, setViewReceive] = useState(false);
+  useEffect(() => {
+    if  (view)  {
+        setTimeout(() => {
+          setViewReceive(true);
+        }, 2000);
+    }
+  }, [view])
   return (
     <Container>
       <Header />
       <Content>
         {dummyMessage.map((message) =>
-          message.sender === me ? (
+          message.sender === myInfo.myInfo.id ? (
             <SendedItem key={message.id} message={message} />
           ) : (
             <ReceivedItem key={message.id} message={message} />
           )
         )}
+        {view && <SendedItem key={dummyMessageSend.id} message={dummyMessageSend} />}
+        {viewReceive && (
+          <ReceivedItem key={dummyMessageReceive.id} message={dummyMessageReceive} />
+        )}
       </Content>
-      <Input />
+      <Input setView={setView} />
     </Container>
   );
-};
+};;
 
 export default DirectMessage;
 

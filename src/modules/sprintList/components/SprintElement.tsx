@@ -5,6 +5,13 @@ import { SprintStatusEnum } from '@/common/types/enums/SprintStatusEnum';
 import { useRouter } from 'next/dist/client/router';
 import { route } from 'next/dist/next-server/server/router';
 import IconBtn from '@/common/component/button/IconBtn';
+import IconDropdown from '@/common/component/dropdown/IconDropdown';
+import { useDispatch, useSelector } from 'react-redux';
+import sprintReducer, {
+  selectCurrentSprint,
+  selectNotFinishedSprintLength,
+  selectSprintList,
+} from '../utils/sprint.slice';
 
 interface SprintElementProps {
   sprint: SprintElementType;
@@ -14,6 +21,9 @@ interface SprintElementProps {
 
 const SprintElement = ({ setViewSprintId, viewSprintId, sprint }: SprintElementProps) => {
   const router = useRouter();
+  const dispatch = useDispatch();
+  const notFinishedLength = useSelector(selectNotFinishedSprintLength);
+  
   return (
     <Container
       onClick={() => {
@@ -26,8 +36,48 @@ const SprintElement = ({ setViewSprintId, viewSprintId, sprint }: SprintElementP
       isCurrent={sprint.id === viewSprintId}
     >
       <SprintNumber className="number">#{sprint.order + 1}</SprintNumber>
-      {sprint.title} 
-      <Button url={'/images/dots.png'} height={25} width={25} />
+      {sprint.title}
+      <Dropdown icon={'dots'} width={100}>
+        <DropdownElement
+          onClick={() => {
+            if (sprint.status !== SprintStatusEnum.CURRENT) {
+              dispatch(sprintReducer.actions.deleteSprintStart(sprint.id));
+            } else {
+              alert('현재 진행중인 스프린트는 삭제할 수 없습니다!');
+            }
+          }}
+        >
+          DELETE
+        </DropdownElement>
+        <DropdownElement
+          onClick={() => {
+            if (sprint.status !== SprintStatusEnum.FINISH) {
+              dispatch(
+                sprintReducer.actions.changeSprintStatusStart({
+                  element: sprint,
+                  status: SprintStatusEnum.FINISH,
+                })
+              );
+            } else {
+              dispatch(
+                sprintReducer.actions.changeSprintStatusStart({
+                  element: sprint,
+                  status:
+                    notFinishedLength == 0
+                      ? SprintStatusEnum.CURRENT
+                      : SprintStatusEnum.READY,
+                })
+              );
+            }
+          }}
+        >
+          {sprint.status !== SprintStatusEnum.FINISH
+            ? 'FINISH'
+            : notFinishedLength == 0
+            ? 'CURRENT'
+            : 'READY'}
+        </DropdownElement>
+      </Dropdown>
     </Container>
   );
 };
@@ -51,8 +101,8 @@ const Container = styled.div<SprintCurrentType>`
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  .button {
-    display: none;
+  .dropdown {
+    visibility: hidden;
   }
   &:hover {
     background: #e5e5e5;
@@ -60,8 +110,8 @@ const Container = styled.div<SprintCurrentType>`
     .number {
       border: 0.5px solid #000000;
     }
-    .button {
-      display: flex;
+    .dropdown {
+      visibility: visible;
       margin-left: auto;
       margin-right: 10px;
     }
@@ -91,8 +141,15 @@ const SprintNumber = styled.div`
   transition: all 0.5s;
   
 `;
-const Button = styled(IconBtn)`
+const Dropdown = styled(IconDropdown)`
   border: none !important;
-  visibility: hidden;
-  align-self: flex-end;
+`;
+const DropdownElement = styled.div`
+  display: flex;
+  align-items: center;
+  height: 30px;
+  width: 100%;
+  &:hover {
+    color: #552bff;
+  }
 `;

@@ -35,15 +35,15 @@ const SprintList = () => {
   };
 
   const onSubmit = () => {
-     dispatch(sprintReducer.actions.createSprintStart(newName));
+    dispatch(sprintReducer.actions.createSprintStart(newName));
     setVisible(false);
     setNewName('');
   };
 
   useEffect(() => {
-    dispatch(sprintReducer.actions.fetchSprintListStart());
-  }, []);
-  
+    console.log(sprintList, 'changed');
+  }, [sprintList]);
+
   return (
     <Container>
       <Modal visible={visible}>
@@ -76,9 +76,9 @@ const SprintList = () => {
           (sprint) =>
             sprint.status !== SprintStatusEnum.FINISH && (
               <SprintElement
+                key={sprint.id}
                 viewSprintId={viewSprintId}
                 setViewSprintId={setViewSprintId}
-                key={sprint.id}
                 sprint={sprint}
               />
             )
@@ -94,9 +94,9 @@ const SprintList = () => {
             (sprint) =>
               sprint.status === SprintStatusEnum.FINISH && (
                 <SprintElement
+                  key={sprint.id}
                   viewSprintId={viewSprintId}
                   setViewSprintId={setViewSprintId}
-                  key={sprint.id}
                   sprint={sprint}
                 />
               )
@@ -174,7 +174,6 @@ const CancelBtn = styled(AccountWhiteBtn)`
 `;
 
 const Input = styled.input`
-  min-height: 50px;
   ::placeholder {
     color: #888888;
   }
@@ -183,6 +182,7 @@ const Input = styled.input`
     outline: none;
     box-shadow: 0px 0px 8px #cccccc;
   }
+  min-height: 50px;
   font-size: 18px;
   color: #606060;
   background: #ffffff;

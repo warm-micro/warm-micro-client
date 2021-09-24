@@ -1,27 +1,31 @@
+import { RootState } from '@/app/rootReducer';
 import WorkspaceImg from '@/common/component/img/WorkspaceImg';
 import { Title } from '@/common/component/textStyle/Title';
 import { dummy } from '@/common/utils/dummy';
-import { Router, useRouter } from 'next/dist/client/router';
-import React from 'react';
+import  Router  from 'next/dist/client/router';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { select } from 'typed-redux-saga/dist';
+import { selectCurrentWorkspace, selectWorkspaceById } from './utils/workspace.slice';
 
 const WorkspaceBtn = () => {
-  const router = useRouter();
-  const workspace = router.query.workspace;
-  //  const workspace = dummy.find((workspace) => workspace.name === router.query.workspace);
+  
+  const workspace = useSelector(selectCurrentWorkspace);
+
   return (
     <Container
       onClick={() => {
         if (workspace) {
-          router.replace(`/workspace/${workspace}`);
+          Router.replace(`/workspace/${workspace.id}`);
         }
       }}
     >
-      <WorkspaceImg name={workspace} />
-      <Title>{workspace}</Title>
+      <WorkspaceImg name={workspace?.name} />
+      <Title>{workspace?.name}</Title>
     </Container>
   );
-};;;;
+};
 
 export default WorkspaceBtn;
 

@@ -17,7 +17,7 @@ const WorkspaceItem = ({ workspace }: WorkSpaceItemProps) => {
   return (
     <Container
       onClick={() => {
-        Router.push(`/workspace/[workspace]`, `/workspace/${workspace.name}`);
+        Router.push(`/workspace/[workspace]`, `/workspace/${workspace.id}`);
         dispatch(workspaceReducer.actions.setCurrentWorkspace(workspace.id));
       }}
     >

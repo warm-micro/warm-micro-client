@@ -1,3 +1,4 @@
+import { ChatType } from '@/common/types/chat.type';
 import { SprintStatusEnum } from '@/common/types/enums/SprintStatusEnum';
 import { MemberType } from '@/common/types/member.type';
 import { SprintElementType } from '@/common/types/sprintElement.type';
@@ -10,24 +11,17 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import Router from 'next/router';
 import { takeEvery, all, put } from 'redux-saga/effects';
 import { select, takeLatest, call } from 'typed-redux-saga';
-import { fetchSprintListAPI, createSprintAPI, deleteSprintAPI, changeSprintAPI } from './sprint.api';
-import { changeSprint } from './sprint.interface';
-import sprintReducer, { selectCurrentSprint, selectSprintList } from './sprint.slice';
+import { fetchCardListAPI } from './card.api';
+import cardReducer from './card.slice';
 
-function* fetchSprintListSaga() {
+function* fetchCardListSaga() {
   try {
-    if (Router.query.workspace) {
-      const res = yield* call(fetchSprintListAPI, parseInt(Router.query.workspace.toString()));
-      const sprintList: SprintElementType[] = res.body.map((sprint, index) => {
-        return {
-          id: sprint.ID,
-          order: index,
-          title: sprint.Name,
-          status: sprint.Status,
-          workspaceId: sprint.WorkspaceId,
-        };
-      });
-      yield put(sprintReducer.actions.fetchSprintListSuccess(sprintList));
+    if (Router.query.sprint) {
+      const res = yield* call(
+        fetchCardListAPI,
+        parseInt(Router.query.sprint.toString())
+      );
+      yield put(cardReducer.actions.fetchCardListSuccess(res.body));
     } else {
       yield call(Router.push, '/myPage');
     }
@@ -38,10 +32,13 @@ function* fetchSprintListSaga() {
 function* createSprintSaga(action: PayloadAction<string>) {
   try {
     const workspaceId = yield* select(selectCurrentWorkspaceId);
-    const sprintList = yield * select(selectSprintList);
+    const sprintList = yield* select(selectSprintList);
     if (workspaceId) {
-      const status =  sprintList.filter(sprint=>sprint.status !== SprintStatusEnum.FINISH).length === 0 ?
-        SprintStatusEnum.CURRENT : SprintStatusEnum.READY;
+      const status =
+        sprintList.filter((sprint) => sprint.status !== SprintStatusEnum.FINISH)
+          .length === 0
+          ? SprintStatusEnum.CURRENT
+          : SprintStatusEnum.READY;
       const { body } = yield* call(createSprintAPI, workspaceId, action.payload, status);
       const newSprint = {
         id: body.ID,
@@ -60,21 +57,25 @@ function* createSprintSaga(action: PayloadAction<string>) {
 }
 function* deleteSprintSaga(action: PayloadAction<number>) {
   try {
-    const currentSprint = yield * select(selectCurrentSprint);
-    const { body } = yield * call(deleteSprintAPI, action.payload);
+    const currentSprint = yield* select(selectCurrentSprint);
+    const { body } = yield* call(deleteSprintAPI, action.payload);
     yield put(sprintReducer.actions.deleteSprintSuccess(action.payload));
-    console.log("??", currentSprint);
+    console.log('??', currentSprint);
     Router.replace(
       '/workspace/[workspace]/sprint/[sprint]',
       `/workspace/${Router.query.workspace}/sprint/${currentSprint.id}`
     );
   } catch (error) {
-    console.log("delete sprint error");
+    console.log('delete sprint error');
   }
 }
 function* changeSprintStatusSaga(action: PayloadAction<changeSprint>) {
   try {
-    const { body } = yield* call(changeSprintAPI, action.payload.element.id, action.payload.status);
+    const { body } = yield* call(
+      changeSprintAPI,
+      action.payload.element.id,
+      action.payload.status
+    );
     yield put(sprintReducer.actions.changeSprintStatusSuccess(action.payload));
   } catch (error) {
     console.log('delete sprint error');
@@ -85,6 +86,9 @@ export function* watchSprint() {
     takeEvery(sprintReducer.actions.fetchSprintListStart.type, fetchSprintListSaga),
     takeLatest(sprintReducer.actions.createSprintStart.type, createSprintSaga),
     takeLatest(sprintReducer.actions.deleteSprintStart.type, deleteSprintSaga),
-    takeLatest(sprintReducer.actions.changeSprintStatusStart.type, changeSprintStatusSaga),
+    takeLatest(
+      sprintReducer.actions.changeSprintStatusStart.type,
+      changeSprintStatusSaga
+    ),
   ]);
 }

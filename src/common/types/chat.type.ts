@@ -5,7 +5,7 @@ import { personTag } from './personTag.type';
 export interface ChatType {
   id: string;
   title: string;
-  sprintId: string;
+  sprintId: number;
   time: Date;
   authorId: string;
   content: string;

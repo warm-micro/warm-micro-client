@@ -14,12 +14,17 @@ interface ChatsProps {
 
 const ChatList = ({ chatIdList, sprint, onShowThreads }: ChatsProps) => {
   const [value, setValue] = useState('');
+  const [show, setShow] = useState(false);
   return (
     <ChatsContainer>
       <ChatContainer>
-        {chatIdList?.map((chatId) => (
-          <Chat key={chatId} chatId={chatId} onShowThreads={onShowThreads} />
-        ))}
+        {chatIdList?.map((chatId) =>
+          chatId !== 'chat3' || show ? (
+            <Chat key={chatId} chatId={chatId} onShowThreads={onShowThreads} />
+          ) : (
+            <></>
+          )
+        )}
       </ChatContainer>
       <InputContainer>
         <Textarea
@@ -29,7 +34,13 @@ const ChatList = ({ chatIdList, sprint, onShowThreads }: ChatsProps) => {
             sprint?.title
           }`}
         />
-        <SubmitBtn show={value.length > 0}>SEND</SubmitBtn>
+        <SubmitBtn onClick={() => setShow(true)} show={value.length > 0}>
+          
+          
+          SEND
+        
+        
+        </SubmitBtn>
       </InputContainer>
     </ChatsContainer>
   );

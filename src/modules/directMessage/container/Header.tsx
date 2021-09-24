@@ -1,20 +1,24 @@
+import { RootState } from '@/app/rootReducer';
 import MailIcon from '@/common/component/icon/MailIcon';
 import PhoneIcon from '@/common/component/icon/PhoneIcon';
 import DmProfileImg from '@/common/component/img/DmProfileImg';
 import { Members } from '@/common/utils/dummy';
+import { selectMemberById, selectMemberList } from '@/modules/workspace/utils/workspace.slice';
 import { useRouter } from 'next/dist/client/router';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import MemberActive from '../component/MemberActive';
 
 const Header = () => {
   const router = useRouter();
-  const member = Members.filter((member) => member.id === router.query.memberId)[0];
+  const member = Members.find((member) => member.id.toString() === router.query.memberId);
+
   return (
     <Container>
       <DmProfileContainer>
         <MemberActive active={member?.active} />
-        <DmProfileImg url={member?.url} />
+        <DmProfileImg url={member?.url} name={member?.name} />
         <Name>{member?.name}</Name>
       </DmProfileContainer>
       <DmProfileDetailContainer>
@@ -60,7 +64,7 @@ const DmProfileContainer = styled.div`
 const DetailContainer = styled.div`
   display: flex;
   align-items: center;
-  svg{
+  svg {
     margin-right: 10px;
   }
   padding: 8px 0;

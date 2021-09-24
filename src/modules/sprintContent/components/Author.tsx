@@ -14,17 +14,16 @@ const Author = ({ authorId, time }: AuthorProps) => {
   const authorInfo = Members.find((member) => member.userId === authorId);
   return (
     <Container>
-      <MemberImg url={authorInfo?.url} />
+      <MemberImg url={authorInfo?.url} name={authorInfo?.name} />
       <TextContainer>
         <Name>{authorInfo?.name}</Name>
         <Time>
           {time
-             ? time.toLocaleString('en-US', {
-                    hour: 'numeric',
-                    minute: 'numeric',
-                    hour12: true,
-                  })
-            
+            ? time.toLocaleString('en-US', {
+                hour: 'numeric',
+                minute: 'numeric',
+                hour12: true,
+              })
             : authorInfo?.id}
         </Time>
       </TextContainer>

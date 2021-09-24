@@ -1,8 +1,10 @@
+import { SendBtn } from '@/common/component/button/SendBtn';
 import { Title } from '@/common/component/textStyle/Title';
 import { Chats, dummySprintThread, dummyThreads } from '@/common/utils/dummy';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Author from '../components/Author';
+import Textarea from '../components/Textarea';
 
 interface ThreadProps {
   chatId?: string;
@@ -15,6 +17,8 @@ const Thread = ({ chatId, showThread }: ThreadProps) => {
   const threadContents = dummyThreads.filter(
     (dummyThread) => dummyThread.chatId === chatId
   );
+  const [show, setShow] = useState(false);
+  const [value, setValue] = useState('');
 
   return (
     <Container showThread={showThread}>
@@ -23,17 +27,31 @@ const Thread = ({ chatId, showThread }: ThreadProps) => {
         <Chat>
           <Author authorId={chatInfo.authorId} time={chatInfo.time} />
           <Content>{chatInfo.content}</Content>
-          <ThreadBtn>{threadIds?.threads.length}개의 답글</ThreadBtn>
+          <ThreadBtn>{show ? threadIds?.threads.length:'1' }개의 답글</ThreadBtn>
         </Chat>
       )}
       <ThreadContainer>
-        {threadContents.map((thread) => (
-          <Chat key={thread.id}>
-            <Author authorId={thread.authorId} time={thread.time} />
-            <Content>{thread.content}</Content>
-          </Chat>
-        ))}
+        {threadContents.map((thread) =>
+          thread.id !== 'thread1' || show ? (
+            <Chat key={thread.id}>
+              <Author authorId={thread.authorId} time={thread.time} />
+              <Content>{thread.content}</Content>
+            </Chat>
+          ) : (
+            <></>
+          )
+        )}
       </ThreadContainer>
+      <InputContainer>
+        <Textarea
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          placeholder={`leave thread`}
+        />
+        <SubmitBtn onClick={() => setShow(true)} show={value.length > 0}>
+          SEND
+        </SubmitBtn>
+      </InputContainer>
     </Container>
   );
 };
@@ -89,4 +107,22 @@ const ThreadContainer = styled.div`
   flex: 1;
   margin-left: 20px;
   border-left: 3px solid #c4c4c4;
+`;
+const InputContainer = styled.div`
+  padding: 20px;
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  box-shadow: 0px -8px 16px rgba(0, 0, 0, 0.08);
+`;
+interface ButtonProps {
+  show: boolean;
+}
+const SubmitBtn = styled(SendBtn)<ButtonProps>`
+  width: 0px;
+  transition: width 0.5s ease-in-out, opacity 0.8s ease-in-out;
+  ${(props) =>
+    props.show
+      ? `width: 120px; visibility: visible; opacity: 1; margin-left: 20px;`
+      : `width: 0px; visibility: hidden; opacity: 0;`}
 `;
