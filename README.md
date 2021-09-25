@@ -9,3 +9,9 @@
 ![Kanban2](https://user-images.githubusercontent.com/56557862/132276178-aadc7504-2077-4b7c-9d29-6bc593d4f72f.png)
 ![Kanban3](https://user-images.githubusercontent.com/56557862/132276181-181c47e0-6b34-419c-871a-15205688e981.png)
 
+
+
+
+
+https://user-images.githubusercontent.com/56557862/134760598-c5c9ee68-59b4-465c-a930-44cf18425a43.mp4
+
