@@ -11,7 +11,3 @@
 
 
 
-
-
-https://user-images.githubusercontent.com/56557862/134760598-c5c9ee68-59b4-465c-a930-44cf18425a43.mp4
-
